@@ -2,4 +2,4 @@
 
 More information coming soon.
 
-(About Us)[about.md]
+(About Us){% link about.md %}
