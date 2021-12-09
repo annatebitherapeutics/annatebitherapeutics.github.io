@@ -1,5 +1,5 @@
-<h1>Annate Bitherapeutics</h1>
+<h1>Our Mission</h1>
 
 More information coming soon.
 
-(About Us){% link about.md %}
+[About Us](about.md)
