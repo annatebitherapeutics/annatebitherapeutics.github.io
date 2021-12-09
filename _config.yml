@@ -2,6 +2,6 @@ title: Annate Bitherapeutics
 email: michael.cipriano@annatebitherapeutics.com
 description >-
 Annate Bitherapeutics information is coming soon.
-baseurl: ""
-url: ""
+baseurl: "/"
+url: "http://www.annatebitherapeutics.com"
 theme: jekyll-theme-slate
