@@ -1,0 +1,15 @@
+---
+title: GRA
+subtitle: Funding
+layout: default
+modal-id: 1
+date: 2022-04-01
+img: 4.jpg
+thumbnail: 4.jpg
+alt: GRA
+project-date: April 2022
+client: GRA
+category: Cancer Therapeutics
+description: We have been awarded $50,000 by the Georgia Research Alliance to further develop our proof of concept therapeutic.
+
+---
