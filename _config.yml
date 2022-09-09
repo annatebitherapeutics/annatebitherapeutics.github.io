@@ -1,10 +1,74 @@
-title: Annate Bitherapeutics
-name: null
-project_title: Coming Soon
-project_tagline: the future
+url: https://annatebitherapeutics.com/
+baseurl: /
+
+# Site settings
+title: Annate BiTherapeutics
 email: michael.cipriano@annatebitherapeutics.com
-description: >
- Annate Bitherapeutics information is coming soon.
-baseurl: "/"
-url: "http://www.annatebitherapeutics.com"
-theme: jekyll-theme-slate
+description: "Annate BiTherapeutics - Information coming soon"
+
+
+# Team names, titles and social links
+people:
+- name: Dr. Stephen Hajduk
+  pic: 1
+  position: CEO
+  description: Dr. Hajduk is a founder and brings 45 years experience in human innate immunity. He provides vision for Annate's future.
+  social:
+    - title: linkedin
+      url: https://www.linkedin.com/in/stephenhajduk/
+
+- name: Dr. Eric DeJesus
+  pic: 2
+  position: President
+  description: Dr. DeJesus asked the initial questions which led to starting Annate and currently leads the growth of the company into new areas.
+  social:
+    - title: linkedin
+      url: https://www.linkedin.com/in/eric-dejesus-phd-77b710225/
+
+- name: Dr. Michael Cipriano
+  pic: 3
+  position: Vice President
+  description: Dr. Cipriano leads the research and development of Annate's unique technology.
+  social:
+    - title: linkedin
+      url: https://www.linkedin.com/in/michael-cipriano-4bb408/
+
+# Board members names, titles and social links
+board:
+- name: Dr. Board Member 1
+  pic: 4
+  position: Board Member
+  description:
+  social:
+    - title: linkedin
+      url: https://www.linkedin.com/in/boardmember/
+- name: Dr. Board Member 2
+  pic: 5
+  position: Board Member
+  description:
+  social:
+    - title: linkedin
+      url: https://www.linkedin.com/in/boardmember/
+- name: Dr. Board Member 3
+  pic: 6
+  position: Board Member
+  description:
+  social:
+    - title: linkedin
+      url: https://www.linkedin.com/in/boardmember/
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, github, etc.)
+social:
+  - title: github
+    url: http://github.com/annatebitherapeutics
+
+# Postal address (add as many lines as necessary)
+address:
+  - line: 111 Riverbend Rd
+  - line: Suite 270
+  - line: Athens, GA 30602-1514
+
+
+# Build settings
+markdown: kramdown
+permalink: pretty
