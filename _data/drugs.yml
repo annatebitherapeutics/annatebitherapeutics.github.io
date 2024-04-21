@@ -1,0 +1,27 @@
+drug:
+- product: ANNBT-100
+  image: "Antibody-HIIC-MOA-non-confidential.jpg"
+  description: ANNBT-100 is a bispecific antibody designed to deliver ApoL1 containing HDLs to BCMA expressing multiple myeloma cells. The results of pre-clinical studies has shown that ApoL1 containing HDLs can be delivered specifically to BCMA expressing cells, with no measurable increase in uptake for off-target cells.
+  indication: Multiple Myeloma
+  status: Late Research and Development / Pre-clinical
+  progress:
+    - research: 80%
+      lead_optimization: 0%
+      ind_enabling: 0%
+      clinical: 0%
+  partners: uga
+  display: true
+
+- product: ANNBT-200
+  image: "Antibody-HIIC-MOA-non-confidential.jpg"
+  description: ANNBT-200 is a bispecific antibody designed to deliver ApoL1 containing HDLs to mesothelin expressing pancreatic cancer cells.
+  indication: Mesothelin expressing cancers
+  status: Early Research and Development / Pre-clinical
+  progress:
+    - research: 10%
+      lead_optimization: 0%
+      ind_enabling: 0%
+      clinical: 0%
+  partners: uga,emory
+  display: true
+

@@ -1,0 +1,31 @@
+# - title: Home
+#   url: "/"
+#   side: left
+#   img: "AB-logo-32x32.png"
+
+- title: Approach
+  url: "/approach/"
+  side: left
+
+- title: Pipeline
+  url: "/pipeline/"
+  side: left
+
+- title: Team
+  url: "/team/"
+  side: left
+
+- title: News
+  url: "/blog/"
+  side: left
+  dropdown:
+  - title: "News Archive"
+    url: "/blog/archive/"
+
+- title: About Us
+  url: "/about/"
+  side: right
+
+- title: "Contact"
+  url: "https://us18.list-manage.com/contact-form?u=fd7a9519704f573e1bf7d96b7&form_id=a86dbc3f29b93759d8e7233e2b8ce118"
+  side: right

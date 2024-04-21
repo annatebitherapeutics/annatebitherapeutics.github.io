@@ -1,0 +1,41 @@
+events:
+- title: Our Beginnings
+  date: 1989
+  image: "aboutus_1.jpg"
+  description: The research behind our technology began in 1989 by SLH and stretched into the early 2000’s, but the additional uses would remain elusive.
+
+- title: Toxin Potential
+  date: 2003
+  image: "aboutus_2.jpg"
+  description: ApoL1 identified as a lytic component within the HDL.
+
+- title: Therapeutic potential
+  date: 2010
+  image: "aboutus_4.jpg"
+  description: First questions proposing ApoL1-containing HDLs as cancer treatments posed.
+
+- title: Proof of Concept
+  date: 2013
+  image: "event_uga.jpg"
+  description: The first experiments testing ApoL1 ability to kill mammalian cells are completed.
+
+- title: Battling Multiple Myeloma
+  date: 2014-2020
+  image: "event_beginnings.jpg"
+  description: Ann Hajduk, wife to cofounder Steve, battles multiple myeloma and to honor her fight, helps us focus our attention on turning this trypanocidal toxin into a cancer drug.
+
+- title: Targeting the therapy
+  date: 2020-2021
+  image: "aboutus_5.jpg"
+  description: "Building on initial data that ApoL1-HDLs can kill mammalian cells under certain conditions, we developed the bispecific antibody technology to specifically target the HDL towards cancer cells."
+
+- title: The Start of Annate
+  date: 2021
+  image: "aboutus_annate.jpg"
+  description: "In 2021, we founded Annate Bitherapeutics with the goal of using our knowledge and experience of human innate immunity to develop therapeutics which target and kill human cancers. Always in honor to Ann and the Innate immune system: <em>Ann</em>ate."
+
+- title: Targeting Multiple Myeloma
+  date: 2022
+  image: "event_gra.jpg"
+  description: Annate receives funding from the Georgia Research Alliance to further develop the targeted treatment of multiple myeloma.
+

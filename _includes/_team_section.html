@@ -1,0 +1,37 @@
+
+{% assign display_header = false %}
+{% for member in include.team %}
+    {% if member.display %}
+        {% assign display_header = true %}
+        {% break %}
+    {% endif %}
+{% endfor %}
+
+{% if display_header %}
+## {{ include.title }}
+
+<div class="row t60">
+
+{% for member in include.team %}
+    {% if member.display %}
+<div class="medium-4 columns">
+    <div class="team-member">
+        <img src="{{ site.urlimg }}{{ member.image }}" class="img-responsive img-circle" alt="" />
+        <h4>{{ member.name }}</h4>
+        <p>{{ member.position }}</p>
+        <p class="text-muted">{{ member.description }}</p>
+        <ul class="list-inline social-buttons center-list">
+            {% for network in member.social %}
+            <li>
+                <a href="{{ network.url }}">
+                    <i class="fa fa-{{ network.title }}"></i>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+    {% endif %}
+{% endfor %}
+</div>
+{% endif %}
