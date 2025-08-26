@@ -20,7 +20,7 @@ With a keen focus on combating formidable adversaries like multiple myeloma and 
 
 ## Current Projects
 
-<img src="{{ site.urlimg }}2023-03-27-pipeline_white.png" alt="" />
+<img src="{{ site.urlimg }}2025-08-pipeline_white.png" alt="" />
 
 {% for d in site.data.drugs.drug %}
 {% if d.display == true %}

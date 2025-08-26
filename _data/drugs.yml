@@ -6,7 +6,7 @@ drug:
   status: Late Research and Development / Pre-clinical
   progress:
     - research: 90%
-      lead_optimization: 0%
+      lead_optimization: 10%
       ind_enabling: 0%
       clinical: 0%
   partners: uga
@@ -18,7 +18,7 @@ drug:
   indication: Mesothelin expressing cancers
   status: Early Research and Development / Pre-clinical
   progress:
-    - research: 30%
+    - research: 40%
       lead_optimization: 0%
       ind_enabling: 0%
       clinical: 0%
