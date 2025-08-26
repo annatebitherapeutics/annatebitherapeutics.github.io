@@ -28,4 +28,4 @@ With a keen focus on combating formidable adversaries like multiple myeloma and 
 {% endif %}
 {% endfor %}
 
-* Last updated March 28th, 2024
+* Last updated August 26th, 2025
