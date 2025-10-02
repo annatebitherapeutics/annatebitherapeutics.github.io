@@ -13,7 +13,7 @@ header:
    image_fullwidth: "cell_with_ab-1600x800.jpg"
 ---
 
-<div class="panel radius">
+<div class="panel mission-panel">
     <h3>{{ site.data.content.mission.title }}</h3>
     {% assign paragraphs = site.data.content.mission.description | replace: '\n\n', '||' | split: '||' %}
     {% for paragraph in paragraphs %}
@@ -50,7 +50,7 @@ header:
 
 
 
-<div class="border-dotted radius b30">
+<div class="mission-summary b30">
     <p class="text-left">
         {{ site.data.content.mission.short_description }}
     </p>

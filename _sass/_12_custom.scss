@@ -295,3 +295,29 @@ ul.social-buttons li a {
     color: #777;
 }
 
+/* About: Mission Panel Modern Style
+------------------------------------------------------------------- */
+/* A lighter, cleaner card look for the About page mission box */
+.mission-panel {
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08); /* subtle neutral border */
+    border-left: 4px solid #2563eb; /* accent bar (modern blue) */
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(2, 6, 23, 0.06);
+}
+.mission-panel h1,
+.mission-panel h2,
+.mission-panel h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.mission-panel p:last-child { margin-bottom: 0; }
+
+/* About: Mission Summary helper (replaces dotted border box) */
+.mission-summary {
+    background: #f8fafc; /* very light slate */
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    border-radius: 12px;
+    padding: 16px 20px;
+}

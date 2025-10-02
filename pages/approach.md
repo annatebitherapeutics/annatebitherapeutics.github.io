@@ -15,7 +15,7 @@ permalink: "/approach/"
 ---
 <img src="{{ site.urlimg }}Antibody-HIIC-MOA-non-confidential.jpg" alt="" />
 
-<div class="panel">
+<div class="panel mission-panel">
 
 <h3>Our technology is a cutting edge bispecific antibody designed to</h3>
 <ul>
