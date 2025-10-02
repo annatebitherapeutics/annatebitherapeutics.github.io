@@ -1,7 +1,7 @@
 founders:
 - name: Stephen Hajduk, PhD
   image: "sh.jpg"
-  position: CEO
+  position: CSO & Co-Founder
   description: Dr. Hajduk is a founder and brings 45 years experience in human innate immunity. He provides vision for Annate's future.
   display: true
   social:
@@ -10,7 +10,7 @@ founders:
 
 - name: Eric DeJesus, PhD
   image: "ed.jpg"
-  position: President
+  position: CEO & Co-Founder
   description: Dr. DeJesus asked the initial questions which led to starting Annate and currently leads the growth of the company into new areas.
   display: true
   social:
@@ -19,7 +19,7 @@ founders:
 
 - name: Michael Cipriano, PhD
   image: "mc.jpg"
-  position: Vice President
+  position: Vice President R&D & Co-Founder
   description: Dr. Cipriano leads the research and development of Annate's unique technology.
   display: true
   social:
