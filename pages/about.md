@@ -12,6 +12,17 @@ permalink: "/about/"
 header:
    image_fullwidth: "cell_with_ab-1600x800.jpg"
 ---
+
+<div class="panel radius">
+    <h3>{{ site.data.content.mission.title }}</h3>
+    {% assign paragraphs = site.data.content.mission.description | replace: '\n\n', '||' | split: '||' %}
+    {% for paragraph in paragraphs %}
+        {% if paragraph.size > 0 %}
+            <p>{{ paragraph | newline_to_br }}</p>
+        {% endif %}
+    {% endfor %}
+</div>
+
 <ul class="timeline">
 {% for event in site.data.milestones.events %}
     {% assign is_even = forloop.index0 | modulo: 2 %}
@@ -37,15 +48,6 @@ header:
 {% endfor %}
 </ul>
 
-<div class="panel radius">
-    <h3>{{ site.data.content.mission.title }}</h3>
-    {% assign paragraphs = site.data.content.mission.description | replace: '\n\n', '||' | split: '||' %}
-    {% for paragraph in paragraphs %}
-        {% if paragraph.size > 0 %}
-            <p>{{ paragraph | newline_to_br }}</p>
-        {% endif %}
-    {% endfor %}
-</div>
 
 
 <div class="border-dotted radius b30">
