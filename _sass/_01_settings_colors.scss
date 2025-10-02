@@ -109,14 +109,14 @@ $topbar-menu-icon-color-toggled: $ci-6;
 /* Footer
 ------------------------------------------------------------------- */
 
-$footer-bg          : $grey-8;
+$footer-bg          : $ci-1;
 $footer-color       : #fff;
 $footer-link-color  : $ci-6;
 
 
-$subfooter-bg       : $grey-13;
-$subfooter-color    : $grey-8;
-$subfooter-link-color: $grey-8;
+$subfooter-bg       : darken($ci-1, 8%);
+$subfooter-color    : #e5e7eb;
+$subfooter-link-color: lighten($ci-6, 10%);
 
 
 

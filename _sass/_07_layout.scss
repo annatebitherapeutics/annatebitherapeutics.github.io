@@ -298,7 +298,7 @@ body.video cite { color: #fff; }
 #subfooter {
     background: $subfooter-bg;
     color: $subfooter-color;
-    padding-top: 30px;
+    padding: 12px 0 12px 0;
 }
 
 #subfooter-left ul.inline-list {
@@ -319,21 +319,34 @@ body.video cite { color: #fff; }
 
 // Beware of SCSS-Syntax here
   li {
-    padding: 0 0 20px 0;
+    padding: 0;
   }
   a {
-    font-size: rem-calc(23);
+    font-size: rem-calc(18);
     display: block;
-    width: 36px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
     border-radius: 50%;
-    color: $subfooter-bg;
-    background: $subfooter-color;
+    color: $subfooter-color;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
     &:hover {
-      background: $subfooter-bg;
-      color: #fff;
+      background: $secondary-color;
+      color: #0b1320;
+      border-color: transparent;
     }
   }
+}
+
+/* Ensure icon glyphs are vertically centered inside social pills */
+.social-icons a[class^="icon-"]:before,
+.social-icons a[class*=" icon-"]:before {
+  line-height: 32px;
+  font-family: 'iconfont' !important; /* ensure correct font is used */
+  font-weight: normal;
 }
 
 

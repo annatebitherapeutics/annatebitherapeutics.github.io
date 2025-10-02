@@ -3,10 +3,15 @@
 #   class: icon-github
 #   title: Code und mehr...
 
-# - name: YouTube
-#   url: http://www.youtube.com/PhlowMedia
-#   class: icon-youtube
-#   title: "Videos, Video-Anleitungen und Filme von Phlow auf YouTube"
+- name: LinkedIn
+  url: https://www.linkedin.com/company/annate-bitherapeutics/
+  class: icon-linkedin
+  title: "Annate BiTherapeutics on LinkedIn"
+
+- name: YouTube
+  url: https://www.youtube.com/@AnnateBitherapeutics
+  class: icon-youtube
+  title: "Annate BiTherapeutics on YouTube"
 
 # - name: Twitter
 #   url: http://twitter.com/phlow
