@@ -2,7 +2,7 @@ founders:
 - name: Stephen Hajduk, PhD
   image: "sh.jpg"
   position: Founder & CSO
-  description: Dr. Hajduk is a founder and brings 45 years experience in human innate immunity. He provides vision for Annate's future.
+  description: Extensive scientific track record spanning 47 years with over 100 publications on African Trypanosomes, including pioneering studies on ApoL1 toxicity in these parasites.
   display: true
   social:
     - title: linkedin
@@ -11,7 +11,7 @@ founders:
 - name: Eric DeJesus, PhD
   image: "ed.jpg"
   position: Founder & CEO
-  description: Dr. DeJesus asked the initial questions which led to starting Annate and currently leads the growth of the company into new areas.
+  description: Conceptualized and initially investigated ApoL1 as a therapeutic against human disease in 2010, with proven scientific track record of publications on ApoL1 toxicity.
   display: true
   social:
     - title: linkedin
@@ -20,7 +20,7 @@ founders:
 - name: Michael Cipriano, PhD
   image: "mc.jpg"
   position: Founder & Vice President R&D
-  description: Dr. Cipriano leads the research and development of Annate's unique technology.
+  description: Conceptualized targeting ApoL1 with a bispecific antibody guided system, bringing a strong background in bioinformatics, research study design, and data analysis.
   display: true
   social:
     - title: linkedin
