@@ -14,9 +14,9 @@ header:
    image_fullwidth: "cell_with_ab-1600x800.jpg"
 ---
 
-At Annate Bitherapeutics, our mission transcends traditional medical boundaries as we innovate with ApoL1 targeted therapies, focusing on diseases desperately in need of breakthrough solutions. Our deep understanding of ApoL1 mechanisms empowers us to craft targeted treatments that not only promise new hope but also herald a new era in medical science.
+At Annate Bitherapeutics, we’re pioneering a new class of ApoL1-based therapeutics designed to tackle some of the hardest-to-treat cancers. By harnessing ApoL1’s unique biology, we’re creating precision therapies that act through a completely new mechanism—offering the potential for safer, more effective treatment options.
 
-With a keen focus on combating formidable adversaries like multiple myeloma and pancreatic cancer, we are at the forefront of redefining treatment landscapes. Our dedication goes beyond current challenges; we are relentlessly exploring new territories and expanding our pipeline. At Annate Bitherapeutics, we are not just developing treatments; we are shaping the future of health, aiming for nothing less than transformative outcomes.
+Our lead programs target multiple myeloma and pancreatic cancer, two diseases that remain among the most challenging in oncology. Backed by strong science and a clear clinical path, Annate is building a pipeline that redefines how cancer can be treated. We’re driven by a simple goal: to turn breakthrough biology into transformative medicines for patients who need them most.
 
 ## Current Projects
 
