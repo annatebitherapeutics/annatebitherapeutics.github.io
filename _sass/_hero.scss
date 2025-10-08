@@ -1,0 +1,136 @@
+@charset "utf-8";
+
+$hero-max-width: if(global-variable-exists(row-width), $row-width, rem-calc(1100));
+
+.front-hero {
+    min-height: calc(100vh - 60px);
+    background: radial-gradient(circle at top right, rgba(13, 23, 51, 0.12), transparent 55%);
+    padding-top: rem-calc(96);
+    padding-bottom: rem-calc(64);
+    scroll-margin-top: 0;
+}
+
+.front-hero__inner {
+    max-width: $hero-max-width;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: rem-calc(32);
+}
+
+.front-hero__copy,
+.front-hero__visual {
+    flex: 1 1 50%;
+    max-width: 50%;
+    float: none;
+    margin: 0;
+}
+
+.front-hero__copy {
+    text-align: left;
+}
+
+.front-hero__visual {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.front-hero__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #3a6af2;
+    margin-bottom: 1rem;
+}
+
+.front-hero__title {
+    font-size: clamp(2.5rem, 4vw, 3.6rem);
+    margin-bottom: 1.5rem;
+}
+
+.front-hero__subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #1f2d5a;
+}
+
+.front-hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: flex-start;
+}
+
+.front-hero__embed,
+.front-hero__video,
+.front-hero__image {
+    width: 100%;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 25px 60px -25px rgba(24, 43, 99, 0.45);
+    background: #000;
+}
+
+.front-hero__embed iframe {
+    display: block;
+    width: 100%;
+    height: clamp(16rem, 30vw, 24rem);
+}
+
+.front-hero__video video,
+.front-hero__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.front-hero__scroll-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-top: 3rem;
+    color: #1f2d5a;
+}
+
+.front-hero__scroll-hint svg {
+    transition: transform 0.3s ease;
+}
+
+.front-hero__scroll-hint:hover svg {
+    transform: translateY(4px);
+}
+
+@media (max-width: 48em) {
+    .front-hero__inner {
+        flex-direction: column;
+        text-align: center;
+        gap: rem-calc(32);
+    }
+
+    .front-hero__copy,
+    .front-hero__visual {
+        max-width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .front-hero__copy {
+        text-align: center;
+    }
+
+    .front-hero__visual {
+        justify-content: center;
+    }
+
+    .front-hero__ctas {
+        justify-content: center;
+    }
+}

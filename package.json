@@ -1,0 +1,27 @@
+{
+  "name": "annatebitherapeutics.github.io",
+  "version": "1.0.0",
+  "description": "If you are a webdesigner interested in Jekyll, the static website generator, this little newsletter is for you. I share tutorials, clever code snippets and information about my own Jekyll Themes called [*Feeling Responsive*][7] and [*Simplicity*][8]. Please don't expect weekly emails :)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annatebitherapeutics/annatebitherapeutics.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/annatebitherapeutics/annatebitherapeutics.github.io/issues"
+  },
+  "homepage": "https://github.com/annatebitherapeutics/annatebitherapeutics.github.io#readme",
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  }
+}
