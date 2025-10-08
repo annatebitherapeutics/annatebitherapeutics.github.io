@@ -5,19 +5,23 @@ header:
 permalink: /index.html
 homepage: true
 hero:
-  eyebrow: "Innate Immune Precision"
-  title: "Engineering ApoL1-guided therapies to rewrite cancer outcomes"
-  subtitle: "Annate Bitherapeutics is advancing bispecific antibodies that deliver the human innate immune complex directly to solid tumors and hematologic cancers."
+  eyebrow: "Harnessing Innate Immunity"
+  title: "Advancing ApoL1-driven bispecific antibodies to fight cancer."
+  subtitle: "Annate Bitherapeutics is unlocking the therapeutic potential of ApoL1 through a next-generation bispecific antibody platform to battle hematologic cancers and solid tumors."
   primary_cta:
     label: "Explore our science"
     url: "#approach"
   secondary_cta:
     label: "Meet the team"
     url: "#team"
+  highlights:
+    - "Innate immune complex delivery platform engineered around ApoL1."
+    - "Bispecific antibodies tuned for high-affinity tumor targeting."
+    - "Built to overcome resistance in hematologic and solid cancers."
   media:
     type: "embed"
     embed: |
-      <iframe src="https://www.youtube.com/embed/ullCwHLn6MQ?autoplay=1&mute=1&loop=1&playlist=ullCwHLn6MQ&controls=0&modestbranding=1&rel=0" title="Annate technology animation" allow="autoplay; fullscreen; encrypted-media" frameborder="0" loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/ullCwHLn6MQ?autoplay=1&mute=1&loop=1&playlist=ullCwHLn6MQ&controls=0&modestbranding=1&rel=0" title="Annate technology animation" allow="autoplay; fullscreen; encrypted-media" frameborder="0" loading="lazy" modestbranding=1 controls=0></iframe>
   fallback_image: "cell_with_ab-1600x800.jpg"
 sections:
   news:
@@ -39,7 +43,7 @@ sections:
     cta_url: "/team/"
   about:
     title: "About Annate"
-    teaser: "Rooted in personal experience, focused on transformative patient impact."
+    teaser: ""
     cta_label: "Our story"
     cta_url: "/about/"
 ---

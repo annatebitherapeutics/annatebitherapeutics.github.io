@@ -12,14 +12,21 @@ format: frontpage
                         {% if hero.eyebrow %}
                         <p class="front-hero__eyebrow">{{ hero.eyebrow }}</p>
                         {% endif %}
-                        <h1 class="front-hero__title">
-                            {{ hero.title | default: page.title | escape }}
-                        </h1>
-                        {% if hero.subtitle %}
-                        <p class="front-hero__subtitle">{{ hero.subtitle }}</p>
-                        {% endif %}
-                        <div class="front-hero__ctas">
-                            {% if hero.primary_cta.url %}
+                <h1 class="front-hero__title">
+                    {{ hero.title | default: page.title | escape }}
+                </h1>
+                {% if hero.subtitle %}
+                <p class="front-hero__subtitle">{{ hero.subtitle }}</p>
+                {% endif %}
+                {% if hero.highlights %}
+                <ul class="front-hero__bullets">
+                    {% for item in hero.highlights %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="front-hero__ctas">
+                    {% if hero.primary_cta.url %}
                             <a class="button large radius" href="{{ hero.primary_cta.url }}">{{ hero.primary_cta.label | default: "Learn more" }}</a>
                             {% endif %}
                             {% if hero.secondary_cta.url %}
@@ -54,12 +61,6 @@ format: frontpage
             </div>
         </div>
 
-        <a class="front-hero__scroll-hint" href="#news">
-            <span>Scroll to explore</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 16.5a1 1 0 0 1-.7-.3l-6-6a1 1 0 1 1 1.4-1.4L12 14.09l5.3-5.29a1 1 0 0 1 1.4 1.42l-6 6a1 1 0 0 1-.7.28z" fill="currentColor"/>
-            </svg>
-        </a>
     </section>
 
     <main class="front-sections">
@@ -136,6 +137,7 @@ format: frontpage
         </section>
 
         {% assign approach_cfg = sections.approach %}
+        {% assign approach_data = site.data.approach %}
         {% assign approach_page = site.pages | where: "permalink", "/approach/" | first %}
         <section id="approach" class="front-section front-section--dark">
             <div class="row front-section__header">
@@ -148,7 +150,14 @@ format: frontpage
             </div>
             <div class="row front-section__content">
                 <div class="small-12 medium-8 columns">
-                    {% if approach_page %}
+                    {% if approach_cfg.summary %}
+                        {% assign approach_paragraphs = approach_cfg.summary | split: '\n\n' %}
+                        {% for paragraph in approach_paragraphs %}
+                        <p>{{ paragraph }}</p>
+                        {% endfor %}
+                    {% elsif approach_data.intro %}
+                        <p>{{ approach_data.intro }}</p>
+                    {% elsif approach_page %}
                         {% capture approach_source %}
                             {{ approach_page.content | replace: '</li>', '. </li>' | replace: '</p>', '. </p>' }}
                         {% endcapture %}
@@ -163,9 +172,19 @@ format: frontpage
                 </div>
                 <div class="small-12 medium-4 columns front-section__aside">
                     <ul class="front-key-points">
-                        <li>Harness the innate immune complex for precise tumor targeting.</li>
-                        <li>Deliver ApoL1 directly to malignant cells to trigger apoptosis.</li>
-                        <li>Design bispecific antibodies that minimize off-target effects.</li>
+                        {% if approach_cfg.highlights %}
+                            {% for item in approach_cfg.highlights %}
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        {% elsif approach_data.points %}
+                            {% for item in approach_data.points %}
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        {% else %}
+                            <li>Precisely target tumors via antigen-specific binding.</li>
+                            <li>Deliver ApoL1 to tumor cells to elicit potent anti-tumor activity.</li>
+                            <li>Engineer bispecific antibodies for high on-tumor selectivity and minimal off-target activity.</li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -240,9 +259,8 @@ format: frontpage
                         <ul class="front-card__social">
                             {% for network in member.social %}
                             <li>
-                                <a class="front-card__social-link" href="{{ network.url }}">
+                                <a class="front-card__social-link" href="{{ network.url }}" aria-label="{{ network.title | capitalize }}">
                                     <i class="fa fa-{{ network.title }}"></i>
-                                    <span class="show-for-sr">{{ network.title | capitalize }}</span>
                                 </a>
                             </li>
                             {% endfor %}
