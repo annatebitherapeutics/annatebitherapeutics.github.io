@@ -332,6 +332,35 @@ html {
     font-size: 1.1rem;
 }
 
+.newsroom .front-card__figure img {
+    border-radius: 18px;
+    box-shadow: 0 16px 32px -20px rgba(8, 14, 38, 0.6);
+}
+
+.newsroom .front-card__caption {
+    margin-top: 0.65rem;
+    font-size: 0.9rem;
+    color: rgba(244, 247, 255, 0.85);
+}
+
+.newsroom .front-card__caption a {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.newsroom .front-card__caption a:hover {
+    color: #dce9ff;
+}
+
+.newsroom .front-card--news .front-card__link {
+    color: #f4f7ff;
+}
+
+.newsroom .front-card--news .front-card__link:hover {
+    color: #dce9ff;
+}
+
 .front-key-points {
     list-style: none;
     padding: 0;
