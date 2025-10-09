@@ -4,7 +4,7 @@ $hero-max-width: if(global-variable-exists(row-width), $row-width, rem-calc(1100
 
 .front-hero {
     min-height: 70vh;
-    background: linear-gradient(140deg, rgba(248, 251, 255, 0.6), rgba(233, 239, 254, 0.15));
+    background: linear-gradient(140deg, rgba(248, 251, 255, 0.92), rgba(218, 228, 255, 0.45));
     padding-top: rem-calc(84);
     padding-bottom: rem-calc(40);
     scroll-margin-top: 0;
@@ -44,7 +44,7 @@ $hero-max-width: if(global-variable-exists(row-width), $row-width, rem-calc(1100
     letter-spacing: 0.15em;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #3a6af2;
+    color: #405de6;
     margin-bottom: 1rem;
 }
 
@@ -56,7 +56,7 @@ $hero-max-width: if(global-variable-exists(row-width), $row-width, rem-calc(1100
 .front-hero__subtitle {
     font-size: 1.25rem;
     line-height: 1.6;
-    color: #1f2d5a;
+    color: #263569;
 }
 
 .front-hero__bullets {
@@ -72,7 +72,7 @@ $hero-max-width: if(global-variable-exists(row-width), $row-width, rem-calc(1100
     padding-left: rem-calc(20);
     font-size: 0.95rem;
     line-height: 1.5;
-    color: #42537b;
+    color: #384b79;
 }
 
 .front-hero__bullets li:before {
@@ -80,7 +80,7 @@ $hero-max-width: if(global-variable-exists(row-width), $row-width, rem-calc(1100
     position: absolute;
     left: 0;
     top: 0;
-    color: #5c86ff;
+    color: #5978ff;
     font-size: 1.2rem;
     line-height: 1;
 }
