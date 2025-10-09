@@ -28,32 +28,41 @@ founders:
 
 # Scientific advisors names, titles and social links
 advisors:
-- name: Dr. Advisor 1
-  image: "bm.jpg"
-  position: Scientific Cancer Malignancy Consultant
-  description:
-  display: false
+- name: Brian Longstreet
+  image: "longstreet_brian.jpg"
+  position: Business Advisor
+  description: CEO and Co-Founder of Exolvo Biosciences; biotech leader with prior leadership roles at Merck and Schering-Plough, driving early-stage innovation.
+  display: true
   social:
     - title: linkedin
-      url: https://www.linkedin.com/in/boardmember/
+      url: https://www.linkedin.com/in/brianlongstreet/
 
-- name: Dr. Advisor 2
-  image: "bm.jpg"
-  position: Pharmaceutical Biotech Consultant
-  description:
-  display: false
+- name: Ajay L. Nooka, MD MPH 
+  image: "nooka_ajay.jpg"
+  position: Clinical Advisor, Myeloma
+  description: Myeloma specialist and clinical research leader at Emory's Winship Cancer Institute, advancing innovative trials for plasma cell disorders.
+  display: true
   social:
     - title: linkedin
-      url: https://www.linkedin.com/in/boardmember/
+      url: https://www.linkedin.com/in/ajay-nooka-209a8aa1/
 
-- name: Dr. Advisor 3
-  image: "bm.jpg"
-  position: Multiple Myeloma Expert
-  description:
-  display: false
+- name: Gregory B. Lesinski, PhD, MPH
+  image: "lesinski_greg.jpg"
+  position: Translational Science Advisor, Oncology
+  description: Professor and Vice Chair for Basic Research, Department of Hematology and Medical Oncology, and Associate Director for Basic Research at Emory's Winship Cancer Institute.
+  display: true
   social:
     - title: linkedin
-      url: https://www.linkedin.com/in/boardmember/
+      url: https://www.linkedin.com/in/gregory-lesinski-6b05a25a/
+
+- name: Serguei V Kozlov, PhD, MBA, PMP
+  image: "kozlov_serguei.jpg"
+  position: Translational Science Advisor, Animal Models
+  description: Expert in GEMM-based preclinical oncology, leading translational in vivo model development at Frederick National Lab.
+  display: true
+  social:
+    - title: linkedin
+      url: https://ccr.cancer.gov/center-for-advanced-preclinical-research/capr-serguei-kozlov
 
 # Board members names, titles and social links
 board:
