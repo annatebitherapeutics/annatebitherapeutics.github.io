@@ -8,33 +8,6 @@ format: frontpage
         <div class="row">
             <div class="small-12 columns">
                 <div class="front-hero__inner">
-                    <div class="front-hero__copy">
-                        {% if hero.eyebrow %}
-                        <p class="front-hero__eyebrow">{{ hero.eyebrow }}</p>
-                        {% endif %}
-                <h1 class="front-hero__title">
-                    {{ hero.title | default: page.title | escape }}
-                </h1>
-                {% if hero.subtitle %}
-                <p class="front-hero__subtitle">{{ hero.subtitle }}</p>
-                {% endif %}
-                {% if hero.highlights %}
-                <ul class="front-hero__bullets">
-                    {% for item in hero.highlights %}
-                    <li>{{ item }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                <div class="front-hero__ctas">
-                    {% if hero.primary_cta.url %}
-                            <a class="button large radius" href="{{ hero.primary_cta.url }}">{{ hero.primary_cta.label | default: "Learn more" }}</a>
-                            {% endif %}
-                            {% if hero.secondary_cta.url %}
-                            <a class="button large radius ghost" href="{{ hero.secondary_cta.url }}">{{ hero.secondary_cta.label | default: "Contact us" }}</a>
-                            {% endif %}
-                        </div>
-                    </div>
-
                     <div class="front-hero__visual">
                         {% assign hero_media = hero.media %}
                         {% if hero_media.type == "embed" and hero_media.embed %}
@@ -64,6 +37,33 @@ format: frontpage
                             <img src="{{ site.urlimg }}{{ hero.fallback_image }}" alt="{{ hero.title | escape }}">
                         </figure>
                         {% endif %}
+                    </div>
+
+                    <div class="front-hero__copy">
+                        {% if hero.eyebrow %}
+                        <p class="front-hero__eyebrow">{{ hero.eyebrow }}</p>
+                        {% endif %}
+                        <h1 class="front-hero__title">
+                            {{ hero.title | default: page.title | escape }}
+                        </h1>
+                        {% if hero.subtitle %}
+                        <p class="front-hero__subtitle">{{ hero.subtitle }}</p>
+                        {% endif %}
+                        {% if hero.highlights %}
+                        <ul class="front-hero__bullets">
+                            {% for item in hero.highlights %}
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <div class="front-hero__ctas">
+                            {% if hero.primary_cta.url %}
+                            <a class="button large radius" href="{{ hero.primary_cta.url }}">{{ hero.primary_cta.label | default: "Learn more" }}</a>
+                            {% endif %}
+                            {% if hero.secondary_cta.url %}
+                            <a class="button large radius ghost" href="{{ hero.secondary_cta.url }}">{{ hero.secondary_cta.label | default: "Contact us" }}</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
