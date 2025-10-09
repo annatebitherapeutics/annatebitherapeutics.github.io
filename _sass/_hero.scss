@@ -54,15 +54,17 @@ $hero-max-width: if(global-variable-exists(row-width), $row-width, rem-calc(1100
 
 .front-hero__bullets {
     list-style: none;
-    margin: rem-calc(28) 0 0;
+    margin: rem-calc(28) auto 0;
     padding: 0;
     display: grid;
     gap: rem-calc(12);
+    max-width: rem-calc(520);
+    text-align: left;
 }
 
 .front-hero__bullets li {
     position: relative;
-    padding-left: rem-calc(20);
+    padding-left: rem-calc(22);
     font-size: 0.95rem;
     line-height: 1.5;
     color: #384b79;
@@ -72,9 +74,9 @@ $hero-max-width: if(global-variable-exists(row-width), $row-width, rem-calc(1100
     content: "•";
     position: absolute;
     left: 0;
-    top: 0;
+    top: 0.35rem;
     color: #5978ff;
-    font-size: 1.2rem;
+    font-size: 0.95rem;
     line-height: 1;
 }
 
@@ -82,9 +84,9 @@ $hero-max-width: if(global-variable-exists(row-width), $row-width, rem-calc(1100
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    justify-content: flex-start;
+    gap: rem-calc(18);
+    margin-top: rem-calc(28);
+    justify-content: center;
 }
 
 .front-hero__embed,
