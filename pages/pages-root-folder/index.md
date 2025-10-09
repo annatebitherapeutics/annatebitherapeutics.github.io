@@ -19,9 +19,11 @@ hero:
     - "Bispecific antibodies tuned for high-affinity tumor targeting."
     - "Built to overcome resistance in hematologic and solid cancers."
   media:
-    type: "embed"
-    embed: |
-      <iframe src="https://www.youtube.com/embed/ullCwHLn6MQ?autoplay=1&mute=1&loop=1&playlist=ullCwHLn6MQ&controls=0&modestbranding=1&rel=0" title="Annate technology animation" allow="autoplay; fullscreen; encrypted-media" frameborder="0" loading="lazy" modestbranding=1 controls=0></iframe>
+    type: "video"
+    poster: "/images/cell_with_ab-1600x800.jpg"
+    sources:
+      - src: "/images/hero.webm"
+        type: "video/webm"
   fallback_image: "cell_with_ab-1600x800.jpg"
 sections:
   news:

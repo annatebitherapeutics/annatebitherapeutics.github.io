@@ -41,10 +41,18 @@ format: frontpage
                         <div class="front-hero__embed">
                             {{ hero_media.embed }}
                         </div>
-                        {% elsif hero_media.type == "video" and hero_media.src %}
+                        {% elsif hero_media.type == "video" %}
                         <div class="front-hero__video">
                             <video autoplay loop muted playsinline {% if hero_media.poster %}poster="{{ hero_media.poster | relative_url }}"{% endif %}>
-                                <source src="{{ hero_media.src | relative_url }}" type="video/mp4">
+                                {% if hero_media.sources %}
+                                    {% for source in hero_media.sources %}
+                                        <source src="{{ source.src | relative_url }}"{% if source.type %} type="{{ source.type }}"{% endif %}>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if hero_media.src %}
+                                    <source src="{{ hero_media.src | relative_url }}"{% if hero_media.mime_type %} type="{{ hero_media.mime_type }}"{% endif %}>
+                                {% endif %}
+                                Your browser does not support the video tag.
                             </video>
                         </div>
                         {% elsif hero_media.type == "image" and hero_media.src %}

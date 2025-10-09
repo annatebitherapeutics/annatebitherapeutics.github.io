@@ -4,7 +4,7 @@ show_meta: false
 title: "News Releases"
 subheadline: ""
 header:
-   image_fullwidth: "header_unsplash_5.jpg"
+   image_fullwidth: "cell_with_ab-1600x800.jpg"
 permalink: "/news/"
 ---
 {% assign newsroom_posts = site.posts | where_exp: "post", "post.path contains '/news/'" %}
@@ -13,11 +13,10 @@ permalink: "/news/"
 {% assign featured_post = newsroom_posts | first %}
 {% assign other_posts = newsroom_posts | slice: 1, newsroom_posts.size %}
 
-<div class="newsroom front-section front-section--light">
-    <div class="row front-section__header">
+<div class="newsroom">
+    <div class="row newsroom__intro">
         <div class="small-12 columns">
-            <h1>{{ page.title }}</h1>
-            <p class="front-section__subtitle">Stories, milestones, and media highlights from Annate Bitherapeutics.</p>
+            <p class="newsroom__subtitle">Stories, milestones, and media highlights from Annate Bitherapeutics.</p>
         </div>
     </div>
 

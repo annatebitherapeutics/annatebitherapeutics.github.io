@@ -332,6 +332,20 @@ html {
     font-size: 1.1rem;
 }
 
+.newsroom {
+    margin-top: 3rem;
+}
+
+.newsroom__intro {
+    margin-bottom: 2.5rem;
+}
+
+.newsroom__subtitle {
+    font-size: 1.1rem;
+    color: #42537b;
+    max-width: 40rem;
+}
+
 .newsroom .front-card__figure img {
     border-radius: 18px;
     box-shadow: 0 16px 32px -20px rgba(8, 14, 38, 0.6);
