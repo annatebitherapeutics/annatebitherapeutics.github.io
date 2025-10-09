@@ -244,7 +244,9 @@ format: frontpage
             </div>
             <div class="front-team-grid">
                 {% assign founders = site.data.team.founders | where_exp: "member", "member.display == true" %}
-                {% for member in founders limit:3 %}
+                {% assign advisors = site.data.team.advisors | where_exp: "member", "member.display == true" %}
+                {% assign front_team_members = founders | slice: 0, 3 | concat: advisors %}
+                {% for member in front_team_members %}
                 <article class="front-card front-card--person">
                     <figure class="front-card__figure">
                         <img src="{{ site.urlimg }}{{ member.image }}" alt="{{ member.name }}">
