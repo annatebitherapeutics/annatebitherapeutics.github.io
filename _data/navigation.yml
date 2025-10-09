@@ -4,26 +4,28 @@
 #   img: "AB-logo-32x32.png"
 
 - title: Approach
-  url: "/approach/"
+  url: "/#approach"
   side: left
 
 - title: Pipeline
-  url: "/pipeline/"
+  url: "/#pipeline"
   side: left
 
 - title: Team
-  url: "/team/"
+  url: "/#team"
   side: left
 
 - title: News
-  url: "/blog/"
+  url: "/#news"
   side: left
   dropdown:
+  - title: "Newsroom"
+    url: "/news/"
   - title: "News Archive"
     url: "/blog/archive/"
 
 - title: About Us
-  url: "/about/"
+  url: "/#about"
   side: right
 
 - title: "Contact"

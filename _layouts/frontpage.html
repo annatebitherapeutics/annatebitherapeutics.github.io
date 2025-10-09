@@ -2,112 +2,362 @@
 layout: default
 format: frontpage
 ---
-<div id="header-home">
-    <div class="row">
-        <div class="small-12 columns">
-        </div><!-- /.medium-4.columns -->
-    </div><!-- /.row -->
-</div><!-- /#header-home -->
+{% assign hero = page.hero %}
+<div class="frontpage">
+    <section id="hero" class="front-section front-hero">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="front-hero__inner">
+                    <div class="front-hero__visual">
+                        {% assign hero_media = hero.media %}
+                        {% if hero_media.type == "embed" and hero_media.embed %}
+                        <div class="front-hero__embed">
+                            {{ hero_media.embed }}
+                        </div>
+                        {% elsif hero_media.type == "video" %}
+                        <div class="front-hero__video">
+                            <video autoplay loop muted playsinline {% if hero_media.poster %}poster="{{ hero_media.poster | relative_url }}"{% endif %}>
+                                {% if hero_media.sources %}
+                                    {% for source in hero_media.sources %}
+                                        <source src="{{ source.src | relative_url }}"{% if source.type %} type="{{ source.type }}"{% endif %}>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if hero_media.src %}
+                                    <source src="{{ hero_media.src | relative_url }}"{% if hero_media.mime_type %} type="{{ hero_media.mime_type }}"{% endif %}>
+                                {% endif %}
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        {% elsif hero_media.type == "image" and hero_media.src %}
+                        <figure class="front-hero__image">
+                            <img src="{{ hero_media.src | relative_url }}" alt="{{ hero.title | escape }}">
+                        </figure>
+                        {% elsif hero.fallback_image %}
+                        <figure class="front-hero__image">
+                            <img src="{{ site.urlimg }}{{ hero.fallback_image }}" alt="{{ hero.title | escape }}">
+                        </figure>
+                        {% endif %}
+                    </div>
 
+                    <div class="front-hero__copy">
+                        {% if hero.eyebrow %}
+                        <p class="front-hero__eyebrow">{{ hero.eyebrow }}</p>
+                        {% endif %}
+                        <h1 class="front-hero__title">
+                            {{ hero.title | default: page.title | escape }}
+                        </h1>
+                        {% if hero.subtitle %}
+                        <p class="front-hero__subtitle">{{ hero.subtitle }}</p>
+                        {% endif %}
+                        {% if hero.highlights %}
+                        <ul class="front-hero__bullets">
+                            {% for item in hero.highlights %}
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <div class="front-hero__ctas">
+                            {% if hero.primary_cta.url %}
+                            <a class="button large radius" href="{{ hero.primary_cta.url }}">{{ hero.primary_cta.label | default: "Learn more" }}</a>
+                            {% endif %}
+                            {% if hero.secondary_cta.url %}
+                            <a class="button large radius ghost" href="{{ hero.secondary_cta.url }}">{{ hero.secondary_cta.label | default: "Contact us" }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-{% comment %}
-*
-* First check, if widget is empty or not by checking if there is a title
-*
-{% endcomment %}
-<div class="row t60">
-	{% if page.widget1.image or page.widget1.video or page.widget1.title %}
-		{% include _frontpage-widget.html widget=page.widget1 %}
-	{% endif %}
+    </section>
 
-	{% if page.widget2.image or page.widget2.video or page.widget2.title %}
-		{% include _frontpage-widget.html widget=page.widget2 %}
-	{% endif %}
+    <main class="front-sections">
+        {% assign sections = page.sections %}
 
-	{% if page.widget3.image or page.widget3.video or page.widget3.title %}
-		{% include _frontpage-widget.html widget=page.widget3 %}
-	{% endif %}
-</div><!-- /.row -->
-
-
-
-{% comment %}
-*
-* First check, if there is a call for action-button
-*
-{% endcomment %}
-{% if page.callforaction.url contains 'http' %}
-{% assign url = '' %}
-{% else %}
-{% capture url %}{{ site.url }}{{ site.baseurl }}{% endcapture %}
-{% endif %}
-{% if page.callforaction %}
-    <div class="row t60 b60">
-        <div class="small-12 text-center columns">
-            <a class="button large radius {{ page.callforaction.style }}" href="{{ url }}{{ page.callforaction.url }}"{% if page.callforaction.url contains 'http' %} target="_blank" {% endif %}>{{ page.callforaction.text }}</a>
-        </div><!-- /.small-12.columns -->
-    </div><!-- /.row -->
-{% endif %}
-
-
-
-{% comment %}
-*
-* First check, if there are any posts at all
-*
-{% endcomment %}
-
-{% unless site.posts == empty %}
-<div class="panel mission-panel">
-    <div class="row t30 b20 homepage">
-        <div class="small-12 columns">
-            {% for post in site.posts limit:1 %}
-            {% if post.image.homepage %}
-            <p>
-                <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" title="{{ post.title | escape_once }}"><img width="970" src="{{ site.urlimg }}{{ post.image.homepage }}" alt="{{ page.title | escape_once }}"></a>
-            </p>
-
-            {% if post.image.caption_url and post.image.caption %}
-            <p class="text-right caption">
-                <a href="{{ post.image.caption_url }}">{{ post.image.caption }}</a>
-            </p>
+        {% assign news_cfg = sections.news %}
+        <section id="news" class="front-section front-section--light">
+            <div class="row front-section__header">
+                <div class="small-12 columns">
+                    <h2>{{ news_cfg.title | default: "Latest News" }}</h2>
+                    {% if news_cfg.teaser %}
+                    <p class="front-section__subtitle">{{ news_cfg.teaser }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% assign news_posts = site.categories.news %}
+            {% if news_posts == empty or news_posts == nil %}
+                {% assign news_posts = site.categories['press-release'] %}
             {% endif %}
-            {% else post.image.homepage == NULL %}
-            <h2>{{ site.data.language.new_blog_entries }}</h2>
+            {% if news_posts == empty or news_posts == nil %}
+                {% assign news_posts = site.posts %}
             {% endif %}
-            {% endfor %}
-        </div><!-- /.small-12.columns -->
-    </div><!-- /.row -->
+            {% if news_posts %}
+                {% assign news_posts = news_posts | sort: "date" | reverse %}
+            {% endif %}
+            {% if news_posts and news_posts.size > 0 %}
+                {% assign featured_post = news_posts[0] %}
+                <div class="front-news-grid front-news-grid--featured">
+                    {% assign summary = featured_post.excerpt | strip_html | strip_newlines %}
+                    {% if summary == "" %}
+                        {% assign summary = featured_post.content | strip_html | strip_newlines | truncatewords: 48, "…" %}
+                    {% else %}
+                        {% assign summary = summary | truncatewords: 48, "…" %}
+                    {% endif %}
+                    <article class="front-card front-card--news front-card--featured">
+                        <p class="front-card__meta">{{ featured_post.date | date: "%B %-d, %Y" }}</p>
+                        <h3 class="front-card__title">
+                            <a href="{{ featured_post.url | relative_url }}">{{ featured_post.title }}</a>
+                        </h3>
+                        <p class="front-card__body">{{ summary }}</p>
+                        <a class="front-card__link" href="{{ featured_post.url | relative_url }}">Read more →</a>
+                    </article>
+                </div>
+                {% if news_posts.size > 1 %}
+                <div class="front-news-grid front-news-grid--list">
+                    {% for post in news_posts offset:1 limit:3 %}
+                    {% assign summary = post.excerpt | strip_html | strip_newlines %}
+                    {% if summary == "" %}
+                        {% assign summary = post.content | strip_html | strip_newlines | truncatewords: 36, "…" %}
+                    {% else %}
+                        {% assign summary = summary | truncatewords: 36, "…" %}
+                    {% endif %}
+                    <article class="front-card front-card--news">
+                        <p class="front-card__meta">{{ post.date | date: "%B %-d, %Y" }}</p>
+                        <h3 class="front-card__title">
+                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        </h3>
+                        <p class="front-card__body">{{ summary }}</p>
+                        <a class="front-card__link" href="{{ post.url | relative_url }}">Read more →</a>
+                    </article>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% else %}
+            <div class="front-news-empty">
+                <p class="front-section__empty">Check back soon for the latest announcements.</p>
+            </div>
+            {% endif %}
+            <div class="row front-section__footer">
+                <div class="small-12 columns">
+                    <a class="button secondary radius" href="{{ news_cfg.cta_url | default: '/news/' | relative_url }}">{{ news_cfg.cta_label | default: "Visit the newsroom" }}</a>
+                </div>
+            </div>
+        </section>
 
+        {% assign approach_cfg = sections.approach %}
+        {% assign approach_data = site.data.approach %}
+        {% assign approach_page = site.pages | where: "permalink", "/approach/" | first %}
+        <section id="approach" class="front-section front-section--dark">
+            <div class="row front-section__header">
+                <div class="small-12 columns">
+                    <h2>{{ approach_cfg.title | default: approach_page.title | default: "Our Approach" }}</h2>
+                    {% if approach_page.teaser %}
+                    <p class="front-section__subtitle">{{ approach_page.teaser }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row front-section__content">
+                <div class="small-12 medium-8 columns">
+                    {% if approach_cfg.summary %}
+                        {% assign approach_paragraphs = approach_cfg.summary | split: '\n\n' %}
+                        {% for paragraph in approach_paragraphs %}
+                        <p>{{ paragraph }}</p>
+                        {% endfor %}
+                    {% elsif approach_data.intro %}
+                        <p>{{ approach_data.intro }}</p>
+                    {% elsif approach_page %}
+                        {% capture approach_source %}
+                            {{ approach_page.content | replace: '</li>', '. </li>' | replace: '</p>', '. </p>' }}
+                        {% endcapture %}
+                        {% assign approach_summary = approach_source | strip_html | strip_newlines | replace: '  ', ' ' | strip | truncatewords: 70, "…" %}
+                        {% if approach_summary != "" %}
+                        <p>{{ approach_summary }}</p>
+                        {% endif %}
+                    {% endif %}
+                    <div class="front-section__cta">
+                        <a class="button radius" href="{{ approach_cfg.cta_url | default: approach_page.url | relative_url }}">{{ approach_cfg.cta_label | default: "Explore the science" }}</a>
+                    </div>
+                </div>
+                <div class="small-12 medium-4 columns front-section__aside">
+                    <ul class="front-key-points">
+                        {% if approach_cfg.highlights %}
+                            {% for item in approach_cfg.highlights %}
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        {% elsif approach_data.points %}
+                            {% for item in approach_data.points %}
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        {% else %}
+                            <li>Precisely target tumors via antigen-specific binding.</li>
+                            <li>Deliver ApoL1 to tumor cells to elicit potent anti-tumor activity.</li>
+                            <li>Engineer bispecific antibodies for high on-tumor selectivity and minimal off-target activity.</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <div class="row">
-        <div class="medium-6 columns">
-            {% for post in site.posts limit:1 %}
-            {% if post.subheadline %}<p class="subheadline">{{ post.subheadline }}</p>{% endif %}
-            <h2><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
-            <p>
-                {% if post.meta_description %}{{ post.meta_description | strip_html | escape }}{% else post.teaser %}{{ post.teaser | strip_html | escape }}{% endif %}
-                <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" title="Read {{ post.title | escape_once }}"><strong>{{ site.data.language.read_more }}</strong></a>
-            </p>
-            {% endfor %}
-        </div><!-- /.medium-5.columns -->
+        {% assign pipeline_cfg = sections.pipeline %}
+        {% assign pipeline_page = site.pages | where: "permalink", "/pipeline/" | first %}
+        <section id="pipeline" class="front-section front-section--accent">
+            <div class="row front-section__header">
+                <div class="small-12 columns">
+                    <h2>{{ pipeline_cfg.title | default: pipeline_page.title | default: "Pipeline" }}</h2>
+                    {% if pipeline_page.subheadline %}
+                    <p class="front-section__subtitle">{{ pipeline_page.subheadline }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row front-section__content">
+                <div class="small-12 medium-6 columns">
+                    {% if pipeline_page %}
+                        {% capture pipeline_source %}
+                            {{ pipeline_page.content | replace: '</li>', '. </li>' | replace: '</p>', '. </p>' }}
+                        {% endcapture %}
+                        {% assign pipeline_summary = pipeline_source | strip_html | strip_newlines | replace: '  ', ' ' | strip | truncatewords: 60, "…" %}
+                        {% if pipeline_summary != "" %}
+                        <p>{{ pipeline_summary }}</p>
+                        {% endif %}
+                    {% endif %}
+                    <div class="front-section__cta">
+                        <a class="button radius ghost" href="{{ pipeline_cfg.cta_url | default: pipeline_page.url | relative_url }}">{{ pipeline_cfg.cta_label | default: "See the pipeline" }}</a>
+                    </div>
+                </div>
+                <div class="small-12 medium-6 columns front-section__aside">
+                    <ul class="front-pipeline-list">
+                        {% assign programs = site.data.drugs.drug | where_exp: "item", "item.display == true" %}
+                        {% for program in programs %}
+                        <li>
+                            <strong>{{ program.product }}</strong>
+                            <span>{{ program.indication }}</span>
+                            <em>{{ program.status }}</em>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
 
+        {% assign team_cfg = sections.team %}
+        {% assign team_page = site.pages | where: "permalink", "/team/" | first %}
+        <section id="team" class="front-section front-section--light">
+            <div class="row front-section__header">
+                <div class="small-12 columns">
+                    <h2>{{ team_cfg.title | default: team_page.title | default: "Team" }}</h2>
+                    {% if team_cfg.teaser %}
+                    <p class="front-section__subtitle">{{ team_cfg.teaser }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="front-team-grid">
+                {% assign founders = site.data.team.founders | where_exp: "member", "member.display == true" %}
+                {% assign advisors = site.data.team.advisors | where_exp: "member", "member.display == true" %}
+                {% assign front_team_members = founders | slice: 0, 3 | concat: advisors %}
+                {% for member in front_team_members %}
+                <article class="front-card front-card--person">
+                    <figure class="front-card__figure">
+                        <img src="{{ site.urlimg }}{{ member.image }}" alt="{{ member.name }}">
+                    </figure>
+                    <div class="front-card__content">
+                        <h3>{{ member.name }}</h3>
+                        <p class="front-card__role">{{ member.position }}</p>
+                        {% if member.description %}
+                        <p class="front-card__body">{{ member.description }}</p>
+                        {% endif %}
+                        {% if member.social %}
+                        <ul class="front-card__social">
+                            {% for network in member.social %}
+                            <li>
+                                <a class="front-card__social-link" href="{{ network.url }}" aria-label="{{ network.title | capitalize }}">
+                                    <i class="fa fa-{{ network.title }}"></i>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            <div class="row front-section__footer">
+                <div class="small-12 columns">
+                    <a class="button radius" href="{{ team_cfg.cta_url | default: team_page.url | relative_url }}">{{ team_cfg.cta_label | default: "Meet the full team" }}</a>
+                </div>
+            </div>
+        </section>
 
-        <div class="medium-6 columns">
-            <p><strong>{{ site.data.language.more_articles }}</strong></p>
-            {% include list-posts entries='3' offset='1' %}
-        </div><!-- /.medium-7.columns -->
-    </div><!-- /.row -->
+{% assign about_cfg = sections.about %}
+{% assign about_page = site.pages | where: "permalink", "/about/" | first %}
+<section id="about" class="front-section front-section--story front-about">
+            <div class="row front-section__header">
+                <div class="small-12 columns">
+                    <h2>{{ about_cfg.title | default: about_page.title | default: "About Annate" }}</h2>
+                    {% if about_cfg.teaser %}
+                    <p class="front-section__subtitle">{{ about_cfg.teaser }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row front-about__mission">
+                <div class="small-12 columns">
+                    <div class="panel mission-panel">
+                        <h3>{{ site.data.content.mission.title }}</h3>
+                        {% assign paragraphs = site.data.content.mission.description | replace: '\n\n', '||' | split: '||' %}
+                        {% for paragraph in paragraphs %}
+                            {% if paragraph.size > 0 %}
+                                <p>{{ paragraph | newline_to_br }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="row front-about__timeline">
+                <div class="small-12 columns">
+                    <ul class="timeline front-timeline">
+                        {% for event in site.data.milestones.events %}
+                        {% assign is_even = forloop.index0 | modulo: 2 %}
+                        {% if is_even == 0 %}
+                        <li>
+                        {% else %}
+                        <li class="timeline-inverted">
+                        {% endif %}
+                            <div class="timeline-image">
+                                <img src="{{ site.urlimg }}{{ event.image}}" class="img-responsive img-circle" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>{{ event.date }}</h4>
+                                    <h4 class="subheading">{{ event.title }}</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">{{ event.description }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="row front-about__summary">
+                <div class="small-12 columns">
+                    <div class="mission-summary b30">
+                        <p class="text-left">
+                            {{ site.data.content.mission.short_description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row front-section__footer">
+                <div class="small-12 columns">
+                    <a class="button secondary radius" href="{{ about_cfg.cta_url | default: about_page.url | relative_url }}">{{ about_cfg.cta_label | default: "Our story" }}</a>
+                </div>
+            </div>
+        </section>
+    </main>
 </div>
-{% endunless %}
 
-
-{% comment %}
-*
-* Finally, if there is content, spit it out.
-*
-{% endcomment %}
-
-<div class="row">
+{% if page.content %}
+<div class="row frontpage-extra">
     {{ content }}
-</div><!-- /.row -->
+</div>
+{% endif %}

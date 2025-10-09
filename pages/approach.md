@@ -13,15 +13,16 @@ header:
    image_fullwidth: "cell_with_ab-1600x800.jpg"
 permalink: "/approach/"
 ---
+{% assign approach = site.data.approach %}
 <img src="{{ site.urlimg }}Antibody-HIIC-MOA-non-confidential.jpg" alt="" />
 
 <div class="panel mission-panel">
 
-<h3>Our technology is a cutting edge bispecific antibody designed to</h3>
+<h3>{{ approach.intro }}</h3>
 <ul>
-<li>Accurately target and bind to a specific component of the human innate immune complex (HIIC), a natural part of the body's defense mechanism, circulating within the bloodstream.</li>
-<li>Navigate this bound immune complex towards cancer cells, utilizing the ability to recognize and attach to specific markers present only on the surface of these cells.</li>
-<li>Significantly increase the concentration of the HIIC within cancer cells, triggering a focused and effective destruction of the malignant cells.</li>
+{% for point in approach.points %}
+<li>{{ point }}</li>
+{% endfor %}
 </ul>
 
 </div>

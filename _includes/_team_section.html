@@ -1,37 +1,32 @@
-
-{% assign display_header = false %}
-{% for member in include.team %}
-    {% if member.display %}
-        {% assign display_header = true %}
-        {% break %}
-    {% endif %}
-{% endfor %}
-
-{% if display_header %}
+{% assign team_members = include.team | where_exp: "member", "member.display == true" %}
+{% if team_members and team_members != empty %}
 ## {{ include.title }}
 
-<div class="row t60">
-
-{% for member in include.team %}
-    {% if member.display %}
-<div class="medium-4 columns">
-    <div class="team-member">
-        <img src="{{ site.urlimg }}{{ member.image }}" class="img-responsive img-circle" alt="" />
-        <h4>{{ member.name }}</h4>
-        <p>{{ member.position }}</p>
-        <p class="text-muted">{{ member.description }}</p>
-        <ul class="list-inline social-buttons center-list">
-            {% for network in member.social %}
-            <li>
-                <a href="{{ network.url }}">
-                    <i class="fa fa-{{ network.title }}"></i>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
-    {% endif %}
-{% endfor %}
+<div class="front-team-grid t60">
+    {% for member in team_members %}
+    <article class="front-card front-card--person">
+        <figure class="front-card__figure">
+            <img src="{{ site.urlimg }}{{ member.image }}" alt="{{ member.name }}">
+        </figure>
+        <div class="front-card__content">
+            <h3>{{ member.name }}</h3>
+            <p class="front-card__role">{{ member.position }}</p>
+            {% if member.description %}
+            <p class="front-card__body">{{ member.description }}</p>
+            {% endif %}
+            {% if member.social %}
+            <ul class="front-card__social">
+                {% for network in member.social %}
+                <li>
+                    <a class="front-card__social-link" href="{{ network.url }}" aria-label="{{ network.title | capitalize }}">
+                        <i class="fa fa-{{ network.title }}"></i>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </article>
+    {% endfor %}
 </div>
 {% endif %}
