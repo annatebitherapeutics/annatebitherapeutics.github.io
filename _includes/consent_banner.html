@@ -1,0 +1,72 @@
+{% if site.google_analytics_tracking_id %}
+<div class="consent-banner is-hidden" role="dialog" aria-live="polite" aria-label="Analytics consent" data-consent-banner>
+    <div class="consent-banner__inner">
+        <p class="consent-banner__message">
+            We use analytics cookies to learn how our site is used. May we enable them to help improve your experience?
+        </p>
+        <div class="consent-banner__actions">
+            <button type="button" class="button small consent-banner__button consent-banner__button--accept" data-consent-accept>Accept</button>
+            <button type="button" class="button small ghost consent-banner__button" data-consent-decline>Decline</button>
+        </div>
+    </div>
+</div>
+<script>
+(function() {
+    var banner = document.querySelector('[data-consent-banner]');
+    if (!banner) { return; }
+
+    var acceptBtn = banner.querySelector('[data-consent-accept]');
+    var declineBtn = banner.querySelector('[data-consent-decline]');
+
+    function setConsent(value) {
+        try { localStorage.setItem('analytics-consent', value); } catch(e) {}
+        window.__analyticsConsentStatus = value;
+    }
+
+    function hideBanner() {
+        banner.classList.add('is-hidden');
+        banner.setAttribute('aria-hidden', 'true');
+        setTimeout(function() {
+            if (banner && banner.parentNode) {
+                banner.parentNode.removeChild(banner);
+            }
+        }, 400);
+    }
+
+    var currentConsent = window.__analyticsConsentStatus;
+    if (currentConsent === 'granted' || currentConsent === 'denied') {
+        hideBanner();
+        return;
+    }
+
+    banner.classList.remove('is-hidden');
+    banner.setAttribute('aria-hidden', 'false');
+
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+            setConsent('granted');
+            if (typeof window.__ensureAnalyticsScript === 'function') {
+                window.__ensureAnalyticsScript();
+            }
+            if (typeof window.__applyAnalyticsConsent === 'function') {
+                window.__applyAnalyticsConsent('granted');
+            }
+            hideBanner();
+        });
+    }
+
+    if (declineBtn) {
+        declineBtn.addEventListener('click', function() {
+            setConsent('denied');
+            if (typeof window.__ensureAnalyticsScript === 'function') {
+                window.__ensureAnalyticsScript();
+            }
+            if (typeof window.__applyAnalyticsConsent === 'function') {
+                window.__applyAnalyticsConsent('denied');
+            }
+            hideBanner();
+        });
+    }
+})();
+</script>
+{% endif %}
