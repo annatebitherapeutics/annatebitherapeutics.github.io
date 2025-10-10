@@ -90,13 +90,65 @@
 	{% endunless %}
 
 	{% if site.google_analytics_tracking_id %}
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_tracking_id }}"></script>
 	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+	(function() {
+		var trackingId = '{{ site.google_analytics_tracking_id }}';
+		var consentDefaults = {
+			analytics_storage: 'denied',
+			ad_storage: 'denied',
+			ad_user_data: 'denied',
+			ad_personalization: 'denied'
+		};
 
-		gtag('config', '{{ site.google_analytics_tracking_id }}');
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){ dataLayer.push(arguments); }
+		window.gtag = gtag;
+
+		var scriptLoaded = false;
+		function ensureAnalyticsScript() {
+			if (scriptLoaded) { return; }
+			scriptLoaded = true;
+			var script = document.createElement('script');
+			script.async = true;
+			script.src = 'https://www.googletagmanager.com/gtag/js?id=' + trackingId;
+			document.head.appendChild(script);
+		}
+		window.__ensureAnalyticsScript = ensureAnalyticsScript;
+
+		function applyConsent(status) {
+			if (status === 'granted') {
+				gtag('consent', 'update', {
+					analytics_storage: 'granted',
+					ad_storage: 'denied',
+					ad_user_data: 'denied',
+					ad_personalization: 'denied'
+				});
+				gtag('config', trackingId);
+			} else {
+				gtag('consent', 'update', consentDefaults);
+			}
+		}
+		window.__applyAnalyticsConsent = applyConsent;
+
+		gtag('consent', 'default', Object.assign({ wait_for_update: 500 }, consentDefaults));
+
+		var consentStatus = null;
+		try {
+			consentStatus = localStorage.getItem('analytics-consent');
+		} catch(e) {
+			consentStatus = null;
+		}
+		window.__analyticsConsentStatus = consentStatus;
+
+		ensureAnalyticsScript();
+		gtag('js', new Date());
+		gtag('config', trackingId, { anonymize_ip: true });
+
+		if (consentStatus === 'granted') {
+			applyConsent('granted');
+		} else if (consentStatus === 'denied') {
+			applyConsent('denied');
+		}
+	})();
 	</script>
 	{% endif %}
