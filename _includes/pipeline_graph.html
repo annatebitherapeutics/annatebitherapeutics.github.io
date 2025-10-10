@@ -1,0 +1,81 @@
+{% assign programs = include.programs | default: site.data.drugs.drug %}
+{% assign stages = "research|lead_optimization|ind_enabling|clinical" | split: "|" %}
+{% assign stage_labels = "Research|Lead Optimization|IND Enabling|Clinical" | split: "|" %}
+
+<div class="pipeline-graph" role="group" aria-label="Pipeline status">
+    <div class="pipeline-graph__header">
+        <div class="pipeline-graph__cell pipeline-graph__cell--info">Program</div>
+        {% for label in stage_labels %}
+        <div class="pipeline-graph__cell pipeline-graph__cell--stage">{{ label }}</div>
+        {% endfor %}
+        <div class="pipeline-graph__cell pipeline-graph__cell--partners">Partners</div>
+    </div>
+
+    <div class="pipeline-graph__body">
+        {% for program in programs %}
+            {% if program.display != false %}
+                {% assign progress = program.progress | first %}
+                <div class="pipeline-graph__row">
+                    <div class="pipeline-graph__cell pipeline-graph__cell--info">
+                        <h3 class="pipeline-program__name">{{ program.product }}</h3>
+                        {% if program.indication %}
+                        <p class="pipeline-program__indication">{{ program.indication }}</p>
+                        {% endif %}
+                        {% assign datapage = program.product | datapage_url: 'pipelinedrugs' %}
+                        {% if datapage %}
+                        <a class="pipeline-program__link" href="{{ site.baseurl }}/{{ datapage }}">View details →</a>
+                        {% endif %}
+                    </div>
+
+                    {% for stage in stages %}
+                        {% assign stage_label = stage_labels[forloop.index0] %}
+                        {% assign raw_percent = progress[stage] | default: 0 %}
+                        {% assign percent_string = raw_percent %}
+                        {% unless percent_string contains '%' %}
+                            {% assign percent_string = percent_string | append: '%' %}
+                        {% endunless %}
+                        {% assign percent_numeric = percent_string | replace: '%', '' | plus: 0 %}
+                        {% assign percent_class = '' %}
+                        {% if percent_numeric == 0 %}
+                            {% assign percent_class = ' pipeline-stage__percent--empty' %}
+                        {% endif %}
+                        <div class="pipeline-graph__cell pipeline-graph__cell--stage">
+                            <div class="pipeline-stage pipeline-stage--{{ stage }}">
+                                <span class="pipeline-stage__label">{{ stage_label }}</span>
+                                <div class="pipeline-stage__track">
+                                    <div class="pipeline-stage__fill" style="width: {{ percent_string }};"></div>
+                                </div>
+                                <span class="pipeline-stage__percent{{ percent_class }}">{{ percent_string }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="pipeline-graph__cell pipeline-graph__cell--partners">
+                        <div class="pipeline-partners">
+                            {% assign partner_shown = '' %}
+                            {% assign partner_list = program.partners | default: "" | split: "," %}
+                            {% for partner in partner_list %}
+                                {% assign partner_name = partner | strip %}
+                                {% if partner_name != "" %}
+                                    {% assign partner_slug = partner_name | downcase | replace: ' ', '-' %}
+                                    {% assign partner_filename = 'partner_' | append: partner_slug | append: '.jpg' %}
+                                    {% assign partner_file = site.static_files | where: "name", partner_filename | first %}
+                                    {% if partner_file %}
+                                        {% assign partner_path = '/images/' | append: partner_filename %}
+                                        {% assign partner_shown = 'true' %}
+                                    <div class="pipeline-partners__item">
+                                        <img src="{{ partner_path | relative_url }}" alt="{{ partner_name }}">
+                                    </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% unless partner_shown == 'true' %}
+                            <span class="pipeline-partners__placeholder">—</span>
+                            {% endunless %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

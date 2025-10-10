@@ -5,11 +5,11 @@ drug:
   indication: Multiple Myeloma
   status: Late Research and Development / Pre-clinical
   progress:
-    - research: 90%
-      lead_optimization: 10%
+    - research: 100%
+      lead_optimization: 20%
       ind_enabling: 0%
       clinical: 0%
-  partners: uga
+  partners: uga,gra
   display: true
 
 - product: ANN-01P
@@ -18,10 +18,10 @@ drug:
   indication: Mesothelin expressing cancers
   status: Early Research and Development / Pre-clinical
   progress:
-    - research: 40%
+    - research: 80%
       lead_optimization: 0%
       ind_enabling: 0%
       clinical: 0%
-  partners: uga,emory
+  partners: uga,emory,nci,ctsa
   display: true
 

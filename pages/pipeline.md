@@ -20,12 +20,6 @@ Our lead programs target multiple myeloma and pancreatic cancer, two diseases th
 
 ## Current Projects
 
-<img src="{{ site.urlimg }}2025-08-pipeline_white.png" alt="" />
+{% include pipeline_graph.html programs=site.data.drugs.drug %}
 
-{% for d in site.data.drugs.drug %}
-{% if d.display == true %}
-* [{{d.product}}, {{d.indication}}]({{ site.baseurl}}/{{ d.product | datapage_url: 'pipelinedrugs' }})
-{% endif %}
-{% endfor %}
-
-* Last updated August 26th, 2025
+* Last updated October 5th, 2025
