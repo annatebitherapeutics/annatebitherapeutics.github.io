@@ -1,7 +1,8 @@
 drug:
 - product: ANN-01M
   image: "Antibody-HIIC-MOA-non-confidential.jpg"
-  description: ANN-01M is a bispecific antibody designed to deliver ApoL1 containing HDLs to BCMA expressing multiple myeloma cells. The results of pre-clinical studies has shown that ApoL1 containing HDLs can be delivered specifically to BCMA expressing cells, with no measurable increase in uptake for off-target cells.
+  image_caption: "Concept illustration of the ANN-01 platform in development."
+  description: ANN-01M is a bispecific antibody in pre-clinical development for BCMA-positive multiple myeloma.
   indication: Multiple Myeloma
   status: Late Research and Development / Pre-clinical
   progress:
@@ -11,17 +12,141 @@ drug:
       clinical: 0%
   partners: uga,gra
   display: true
+  disease_overview:
+    title: "Multiple Myeloma Disease Landscape"
+    content: |
+      Multiple myeloma is a malignant plasma cell disorder that accounts for ~10% of hematologic cancers and ~2% of all cancers. The American Cancer Society estimates ~36,110 new U.S. diagnoses and ~12,030 deaths in 2025—highlighting substantial unmet need despite progress with proteasome inhibitors, IMiDs, anti-CD38 mAbs, and BCMA-directed therapies.
+
+      Patients typically experience cycles of remission and relapse, cumulative toxicity, and end-organ damage (bone, renal). Outcomes are especially poor in triple-class-refractory disease, where survival can be measured in months. Differentiated, off-the-shelf mechanisms that do not depend on T-cell fitness remain a priority for later-line care.
+  incidence_stats:
+    - label: "U.S. annual cases (2025 est.)"
+      detail: "~36,110 new diagnoses; ~12,030 deaths (American Cancer Society)."
+    - label: "Global burden"
+      detail: "GLOBOCAN 2022: ~188k new cases; ~121k deaths; ~539k 5-year prevalent cases worldwide."
+    - label: "Median age at diagnosis"
+      detail: "69 years; most diagnoses occur at ages 65-74 (SEER, 2018-2022)."
+  target_profile:
+    title: "BCMA as a Precision Anchor"
+    content: |
+      BCMA (B-cell maturation antigen) is found on mature B cells and plasma cells, where it promotes survival signals that myeloma cells exploit.
+
+       While BCMA-directed CAR-T and bispecific therapies have proven the target’s value, they face challenges like T-cell exhaustion and limited accessibility. ANN-01M offers an immune-independent approach that preserves BCMA as a target while reducing systemic toxicity and simplifying development.
+  development_strategy:
+    title: "ANN-01M Program & Research Plan"
+    content: |
+      **Mechanism & Rationale**
+
+      - ANN-01M bispecific escorts endogenous ApoL1 into BCMA+ myeloma cells; post-internalization lysosomal pore formation delivers immune-cell–independent killing.
+      - Designed as an off-the-shelf, redosable option suitable for heavily pre-treated, immunosuppressed patients.
+
+      **Current Progress (pre-clinical)**
+
+      - In-vitro: BCMA-dependent binding, rapid internalization, ApoL1-redirected killing in BCMA+ lines; no activity in BCMA-negative controls.
+      - Selectivity & Safety: Early off-target screens;
+
+      **Translational Models (in flight / planned)**
+
+      - Emory/Winship access to myeloma PDX and primary samples for benchmark comparisons.
+      - Transgenic Human ApoL1-capable NSG mouse models to assess efficacy and safety in a relevant background.
+      - γ-secretase inhibitor in-vivo studies to evaluate mBCMA vs sBCMA effects on exposure and response.
+
+      **Regulatory Workstreams**
+
+      - Focused on MoA validation, early tox signals, expanded animal model choices - gates supporting an INTERACT → pre-IND path.
+      - CMC readiness: sequence/format lock, pilot expression, developability & stability screens, and CDMO down-selection for GLP tox material; business development for future GMP capacity.
+
+      **Near-Term Milestones**
+
+      - Complete expanded in-vitro panel and BCMA threshold analysis; initiate PDX efficacy.
+      - Finalize tox strategy in humanized/NSG models; progress IND-enabling study design.
+      - Deliver CMC feasibility package (titre/yield, HCP/HC DNA analytics, stability screens).
+  # supplemental_images:
+  #   # - path: "aboutus_blank.jpg"
+  #   #   alt: "Epidemiology graphic for multiple myeloma"
+  #   #   caption: "Incidence map and 5-year prevalence callouts (GLOBOCAN 2022)."
+  #   # - path: "aboutus_blank.jpg"
+  #   #   alt: "Placeholder microscopy image representing BCMA expression"
+  #   #   caption: "ANN-01M flow localization image from pre-clinical data."
+  external_resources:
+    - label: "NCI Multiple Myeloma Overview"
+      url: "https://www.cancer.gov/types/myeloma"
+    - label: "International Myeloma Foundation - Disease Information"
+      url: "https://www.myeloma.org/multiple-myeloma"
+    - label: "MMRF CoMMpass Research Portal"
+      url: "https://research.themmrf.org/"
 
 - product: ANN-01P
   image: "Antibody-HIIC-MOA-non-confidential.jpg"
-  description: ANN-01P is a bispecific antibody designed to deliver ApoL1 containing HDLs to mesothelin expressing pancreatic cancer cells.
-  indication: Mesothelin expressing cancers
+  image_caption: "Platform concept highlighting mesothelin-focused development."
+  description: ANN-01M is a bispecific antibody in pre-clinical development targeting mesothelin (MSLN) on pancreatic ductal adenocarcinoma (PDAC) and other MSLN+ tumors.
+  indication: "Mesothelin-expressing cancers (focus: PDAC)"
   status: Early Research and Development / Pre-clinical
   progress:
     - research: 80%
       lead_optimization: 0%
       ind_enabling: 0%
       clinical: 0%
-  partners: uga,emory,nci,ctsa
+  partners: uga, emory, nci, ctsa
   display: true
 
+  disease_overview:
+    title: "Pancreatic Ductal Adenocarcinoma Landscape"
+    content: |
+      Pancreatic ductal adenocarcinoma (PDAC) accounts for >90% of pancreatic cancers and is on track to become the #2 cause of U.S. cancer death by 2030. The American Cancer Society estimates ~67,440 new U.S. cases and ~51,980 deaths in 2025, reflecting late presentation and limited screening options.
+
+      Most patients present with unresectable or metastatic disease. Despite intensive regimens (FOLFIRINOX; gemcitabine+nab-paclitaxel), median overall survival in advanced PDAC is typically <12 months. Dense desmoplastic stroma, immune exclusion, and early micrometastatic spread demand off-the-shelf mechanisms that do not rely on patient T-cell fitness and can function within a hostile tumor microenvironment.
+
+  incidence_stats:
+    - label: "U.S. annual cases (2025 est.)"
+      detail: "~67,440 new diagnoses; ~51,980 deaths (American Cancer Society)."
+    - label: "Global burden"
+      detail: "GLOBOCAN 2022: ~511,000 new cases; ~467,000 deaths worldwide; high incidence/mortality in Europe & North America."
+    - label: "Five-year survival (all stages)"
+      detail: "~13% overall; stage-dependent (localized 44%, regional 16%, distant 3%) (SEER/ACS 2014-2020 cohort)."
+
+  target_profile:
+    title: "Mesothelin Biology & Relevance"
+    content: |
+      Mesothelin (MSLN) is a surface protein found at very low levels in healthy tissues but highly expressed in most pancreatic cancers (around 80-90%). It binds to MUC16/CA125, helping cancer cells stick and spread. Because it's common in tumors and rare in vital tissues, MSLN serves as both a useful biomarker and an effective target for drug delivery.
+
+      ANN-01P leverages MSLN internalization to ferry endogenous ApoL1 into tumor lysosomes, aiming for immune-cell-independent kill while avoiding systemic payload toxicities and manufacturing constraints typical of cell therapies.
+
+  development_strategy:
+    title: "ANN-01P Program & Research Plan"
+    content: |
+      **Mechanism & Rationale**
+
+      - ANN-01P bispecific architecture captures circulating ApoL1 and traffics it into mesothelin-positive PDAC cells, triggering lysosomal pore formation and tumor cell lysis independent of T cells or Fc-effector reliance.
+
+      **Current Progress (pre-clinical)**
+
+      - In-vitro: Specific binding to MSLN+ PDAC lines, internalization, ApoL1-redirected killing; no activity in MSLN-negative controls.
+
+      **Translational Models (in flight / planned)**
+
+      - Emory/Winship partnerships for PDAC biospecimens, PDXs.
+      - Custom transgenic human ApoL1 x human mesothelin mouse models enabling exposure/efficacy and safety studies in a disease-relevant background.
+
+      **Near-Term Milestones**
+
+      - Complete NSG mouse efficacy studies and ApoL1 / human mesothelin transgenic mouse evaluations.
+      - Complete transgenic model characterization and pilot tox studies/efficacy studies.
+  # supplemental_images:
+  #   - path: "aboutus_blank.png"
+  #     alt: "Placeholder graphic for mesothelin-positive pancreatic cancer"
+  #     caption: "Replace with MSLN expression map and MUC16/CA125 interaction schematic."
+  #   - path: "aboutus_blank.png"
+  #     alt: "Placeholder microscopy image representing pancreatic tumor microenvironment"
+  #     caption: "ANN-01P lysosomal localization."
+
+  external_resources:
+    - label: "NCI Pancreatic Cancer Overview"
+      url: "https://www.cancer.gov/types/pancreatic"
+    - label: "ACS: Pancreatic Cancer Key Statistics (2025)"
+      url: "https://www.cancer.org/cancer/types/pancreatic-cancer/about/key-statistics.html"
+    - label: "SEER: Cancer Stat Facts - Pancreas"
+      url: "https://seer.cancer.gov/statfacts/html/pancreas.html"
+    - label: "GLOBOCAN 2022: Pancreas Fact Sheet"
+      url: "https://gco.iarc.who.int/media/globocan/factsheets/cancers/13-pancreas-fact-sheet.pdf"
+    - label: "Mesothelin-MUC16/CA125 Interaction (review & structural studies)"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2635045/"

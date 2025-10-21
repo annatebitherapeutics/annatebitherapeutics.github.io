@@ -5,19 +5,127 @@ header:
    image_fullwidth: "cell_with_ab-1600x800.jpg"
 ---
 
-<div class="row t30">
-    <div class="medium-8 columns medium-offset-2">
-<h1>{{page.product}}</h1>
+<article class="drug-detail">
+    <section class="drug-header">
+        <div class="drug-container">
+            <div class="drug-header__frame{% if page.image %} drug-header__frame--split{% endif %}">
+                <div class="drug-header__copy">
+                    <p class="drug-tagline">Pipeline Program</p>
+                    <h1>{{ page.product }}</h1>
+                    {% if page.description %}
+                    <p class="lead">{{ page.description }}</p>
+                    {% endif %}
 
-<h2>Outline</h2>
-<p class="text-muted">{{ page.description}}</p>
+                    {% if page.indication or page.status %}
+                    <div class="drug-meta">
+                        {% if page.indication %}
+                        <span class="drug-badge">
+                            <strong>Indication:</strong> {{ page.indication }}
+                        </span>
+                        {% endif %}
+                        {% if page.status %}
+                        <span class="drug-badge">
+                            <strong>Status:</strong> {{ page.status }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% if page.image %}
+                <div class="drug-header__media">
+                    <figure class="drug-media">
+                        <img src="{{ site.urlimg }}{{ page.image }}" alt="{{ page.image_alt | default: page.product }}" />
+                        {% if page.image_caption %}
+                        <figcaption>{{ page.image_caption }}</figcaption>
+                        {% endif %}
+                    </figure>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
 
-<img src="{{ site.urlimg }}{{  page.image}}" alt="" />
+    {% if page.disease_overview %}
+    <section class="drug-section drug-section--light">
+        <div class="drug-container">
+            <h2>{{ page.disease_overview.title | default: "Disease Overview" }}</h2>
+            <div class="drug-section__body">
+                {{ page.disease_overview.content | markdownify }}
+            </div>
+        </div>
+    </section>
+    {% endif %}
 
-<h2>Indication</h2>
-<p class="text-muted">{{ page.indication}}</p>
+    {% if page.incidence_stats %}
+    <section class="drug-section drug-section--accent">
+        <div class="drug-container">
+            <h3>Incidence Snapshot</h3>
+            <div class="drug-stat-grid">
+                {% for stat in page.incidence_stats %}
+                <div class="drug-stat-card">
+                    <span class="drug-stat-card__label">{{ stat.label }}</span>
+                    <span class="drug-stat-card__detail">{{ stat.detail }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
 
-<h2>Current Status</h2>
-<p class="text-muted">{{ page.status}}</p>
+    {% if page.target_profile %}
+    <section class="drug-section">
+        <div class="drug-container">
+            <h2>{{ page.target_profile.title | default: "Target Biology" }}</h2>
+            <div class="drug-section__body">
+                {{ page.target_profile.content | markdownify }}
+            </div>
+        </div>
+    </section>
+    {% endif %}
 
-</div></div>
+    {% if page.development_strategy %}
+    <section class="drug-section drug-section--muted">
+        <div class="drug-container">
+            <h2>{{ page.development_strategy.title | default: "Development Strategy" }}</h2>
+            <div class="drug-section__body">
+                {{ page.development_strategy.content | markdownify }}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- {% if page.supplemental_images %}
+    <section class="drug-section drug-section--gallery">
+        <div class="drug-container">
+            <h3>Visual Assets</h3>
+            <div class="row small-up-1 medium-up-2" data-equalizer>
+                {% for item in page.supplemental_images %}
+                <div class="column">
+                    <figure class="drug-gallery__item" data-equalizer-watch>
+                        <img src="{{ site.urlimg }}{{ item.path }}" alt="{{ item.alt | default: page.product }}" />
+                        {% if item.caption %}
+                        <figcaption>{{ item.caption }}</figcaption>
+                        {% endif %}
+                    </figure>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %} -->
+
+    {% if page.external_resources %}
+    <section class="drug-section drug-section--light">
+        <div class="drug-container">
+            <h3>Further Reading</h3>
+            <ul class="drug-resource-list">
+                {% for resource in page.external_resources %}
+                <li>
+                    <a href="{{ resource.url }}">{{ resource.label }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    {% endif %}
+</article>

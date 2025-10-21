@@ -20,7 +20,7 @@ founders:
 - name: Michael Cipriano, PhD
   image: "mc.jpg"
   position: Founder & Vice President R&D
-  description: Conceptualized targeting ApoL1 with a bispecific antibody guided system, bringing a strong background in bioinformatics, research study design, and data analysis.
+  description: Conceptualized targeting ApoL1 with a bispecific antibody guided system, bringing a strong background in cell biology, bioinformatics, research study design, and data analysis.
   display: true
   social:
     - title: linkedin
@@ -49,11 +49,20 @@ advisors:
 - name: Gregory B. Lesinski, PhD, MPH
   image: "lesinski_greg.jpg"
   position: Translational Science Advisor, Oncology
-  description: Professor and Vice Chair for Basic Research, Department of Hematology and Medical Oncology, and Associate Director for Basic Research at Emory's Winship Cancer Institute.
+  description: Professor and Vice Chair for Basic Research, Department of Hematology and Medical Oncology, and Associate Director for Basic Research at Emory's Winship Cancer Institute advancing immune-oncology and translational cancer research.
   display: true
   social:
     - title: linkedin
       url: https://www.linkedin.com/in/gregory-lesinski-6b05a25a/
+
+- name: Vikas A. Gupta, MD, PhD
+  image: "gupta_vikas.jpg"
+  position: Clinical and Translational Science Advisor, Oncology
+  description: Vikas Gupta, MD, PhD — Assistant Professor of Hematology and Medical Oncology at Emory University; board-certified hematologist-oncologist advancing myeloma and immunotherapy research.
+  display: true
+  social:
+    - title: globe
+      url: https://winshipcancer.emory.edu/profiles/gupta-vikas.php
 
 - name: Serguei V Kozlov, PhD, MBA, PMP
   image: "kozlov_serguei.jpg"
@@ -61,7 +70,7 @@ advisors:
   description: Expert in GEMM-based preclinical oncology, leading translational in vivo model development at Frederick National Lab.
   display: true
   social:
-    - title: linkedin
+    - title: globe
       url: https://ccr.cancer.gov/center-for-advanced-preclinical-research/capr-serguei-kozlov
 
 # Board members names, titles and social links

@@ -1,5 +1,56 @@
-intro: "Annate Bitherapeutics is advancing a cutting-edge bispecific antibody platform that leverages the natural power of the human innate immune system. Our technology precisely redirects ApoL1, a potent component of the innate immune complex, to cancer cells—turning a natural defense mechanism into a targeted therapeutic weapon. By guiding ApoL1 directly into tumors, our approach achieves highly selective, immune-cell–independent cancer cell destruction."
-points:
-  - "Engages ApoL1, a native cytolytic protein circulating in the bloodstream."
-  - "Targets cancer-specific markers, delivering ApoL1 directly to tumor cells."
-  - "Drives intracellular accumulation of ApoL1, leading to potent and localized tumor cell death."
+hero:
+  eyebrow: "Harnessing the Power of Innate Immunity"
+  headline: "Redirecting ApoL1 to Defeat Tumor Resistance"
+  summary: "Annate Bitherapeutics develops bispecific antibodies that deliver ApoL1—a potent component of the body's innate immune defense—directly into cancer cells. This unique approach enables immune-independent tumor killing that complements and extends today's cancer therapies"
+  highlights:
+    - "Targets cancer cells with precision using the body's own proteins"
+    - "Bypasses T-cell exhaustion and immune escape"
+
+mission:
+  title: "Our Platform In Brief"
+  narrative: "By co-opting ApoL1's native ability to disrupt membranes, The Annate Platform is designed to transport innate immune complexes past the tumor surface and into lysosomal compartments. Once inside, ApoL1 destabilizes the lysosome and triggers cell death without relying on effector cells."
+
+pillars:
+  - title: "Native Biology As A Payload"
+    description: "We harness naturally circulating ApoL1 within high-density lipoprotein particles (HDLs), maintaining its native conformation and reducing the potential for immunogenicity."
+  - title: "Bispecific Targeting"
+    description: "Engineered antibody arms selectively bind tumor-associated surface antigens, directing ApoL1 deposition exclusively to sites of disease."
+  - title: "Immune-System Agnostic"
+    description: "Because tumor cell killing is mediated by harnessing circulating ApoL1 within HDL particles, the Annate Platform remains effective even under conditions of immune suppression or T-cell exhaustion."
+
+workflow:
+  title: "How The Annate Platform Works"
+  steps:
+    - stage: "Target Discovery"
+      detail: "We identify overexpressed antigens with limited normal-tissue distribution."
+    - stage: "Antibody Engineering"
+      detail: "Our bispecific antibodies are precisely designed to balance strong binding with efficient uptake into tumor cells."
+    - stage: "Translational Readiness"
+      detail: "We validate each candidate using functional assays, cell-based studies, and patient-derived models to ensure targeted delivery and potent activity."
+    - stage: "Combination Strategy"
+      detail: "We evaluate how our therapeutics can enhance or complement existing standards of care."
+  note: "Our adaptable discovery platform shortens the path from target to candidate, generating powerful translational insights at every step."
+
+impact:
+  title: "Why This Matters"
+  stats:
+    - label: "Unique mechanism"
+      detail: "Lysosomal disruption is a novel mode of action that complements existing standards and may overcome cross-resistance."
+    - label: "Tumor selectivity"
+      detail: "Payload is endogenous and only unleashed inside targeted cells, maintaining a wide therapeutic window."
+    - label: "Therapy fatigue"
+      detail: "Many relapsed patients have exhausted T-cell-dependent options. The Annate Platform cell-intrinsic approach keeps working when lymphocyte counts fall."
+
+
+resources:
+  title: "Dig Deeper"
+  items:
+    - label: "Multiple Myeloma Treatment Landscape"
+      url: "https://themmrf.org/diagnosis-and-treatment/treatment-options/"
+    - label: "Pancreatic Cancer Disease and Treatment Overview"
+      url: "https://www.cancer.gov/types/pancreatic/patient/pancreatic-treatment-pdq"
+
+video:
+  title: "Founders Spotlight"
+  description: "Hear how Annate Bitherapeutics is translating innate immunity into precise oncology therapeutics."
+  youtube_id: "ullCwHLn6MQ"
