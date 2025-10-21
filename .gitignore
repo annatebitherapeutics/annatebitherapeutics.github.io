@@ -1,0 +1,19 @@
+# Jekyll build artifacts
+_site/
+.jekyll-cache/
+.sass-cache/
+.bundle/
+
+# Ruby / bundler extras
+vendor/
+tmp/
+
+# Node & Playwright artifacts
+node_modules/
+test-results/
+playwright-report/
+snapshots/
+
+# System files
+.DS_Store
+Thumbs.db
