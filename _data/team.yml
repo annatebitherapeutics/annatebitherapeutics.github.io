@@ -30,17 +30,24 @@ founders:
 advisors:
 - name: Brian Longstreet
   image: "longstreet_brian.jpg"
-  position: Business Advisor
-  description: CEO and Co-Founder of Exolvo Biosciences; biotech leader with prior leadership roles at Merck and Schering-Plough, driving early-stage innovation.
+  position: Strategic Business Advisor
+  description: CEO and Co-Founder of Exolvo Biosciences; biotech leader with prior leadership roles at Merck and Schering-Plough, driving early-stage innovation. Veteran biotech operator with multi-billion-dollar leadership experience, deep commercial expertise, and a track record of building high-growth companies.
   display: true
   social:
     - title: linkedin
       url: https://www.linkedin.com/in/brianlongstreet/
-
+- name: Marty Moore
+  image: "moore_marty.jpg"
+  position: FDA Pathway Advisor
+  description: Built university spinouts into clinical-stage companies, leading two IND submissions, five clinical trials, and securing over $75M in angel and venture financing.
+  display: true
+  social:
+    - title: linkedin
+      url: https://www.linkedin.com/in/martinmoore1/
 - name: Ajay L. Nooka, MD MPH 
   image: "nooka_ajay.jpg"
-  position: Clinical Advisor, Myeloma
-  description: Myeloma specialist and clinical research leader at Emory's Winship Cancer Institute, advancing innovative trials for plasma cell disorders.
+  position: Clinical Trials Advisor, Myeloma
+  description: Internationally recognized myeloma clinician-scientist with leadership across all clinical trials at Winship, integrating genomic insights with patient centered therapeutic strategies.
   display: true
   social:
     - title: linkedin
@@ -49,7 +56,7 @@ advisors:
 - name: Gregory B. Lesinski, PhD, MPH
   image: "lesinski_greg.jpg"
   position: Translational Science Advisor, Oncology
-  description: Professor and Vice Chair for Basic Research, Department of Hematology and Medical Oncology, and Associate Director for Basic Research at Emory's Winship Cancer Institute advancing immune-oncology and translational cancer research.
+  description: Professor and Vice Chair for Basic Research, Department of Hematology and Medical Oncology, and Associate Director for Basic Research at Emory's Winship Cancer Institute advancing immune-oncology and translational cancer research. 
   display: true
   social:
     - title: linkedin
