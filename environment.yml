@@ -1,0 +1,10 @@
+name: website
+channels:
+  - conda-forge
+dependencies:
+  - ruby=3.2
+  - nodejs=20
+  - c-compiler
+  - cxx-compiler
+  - make
+  - pkg-config
