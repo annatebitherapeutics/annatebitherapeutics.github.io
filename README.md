@@ -1,10 +1,10 @@
-# Annate B Therapeutics Website
+# Annate Bitherapeutics Website
 
-This repository contains the public website for Annate B Therapeutics. It is a Jekyll-based site deployed to GitHub Pages and customized for the company’s pages, pipeline content, team information, and visual regression checks.
+This repository contains the public website for Annate Bitherapeutics. It is a Jekyll-based site deployed to GitHub Pages and customized for the company’s pages, pipeline content, team information, and visual regression checks.
 
 ## Credits
 
-This site is built on top of the original *Feeling Responsive* Jekyll theme by Moritz "mo." Sauer / Phlow. The upstream project remains MIT licensed, and this repository keeps that attribution in place while documenting the Annate B Therapeutics site itself rather than the generic template.
+This site is built on top of the original *Feeling Responsive* Jekyll theme by Moritz "mo." Sauer / Phlow. The upstream project remains MIT licensed, and this repository keeps that attribution in place while documenting the Annate Bitherapeutics site itself rather than the generic template.
 
 ## Stack
 
@@ -51,7 +51,7 @@ GitHub Actions deploys the site from `main` to GitHub Pages.
 
 - pull requests validate the Jekyll build before merge
 - pushes to `main` deploy the site
-- pushes to `main` also create an automated annotated git tag through [.github/workflows/release-tag.yml](.github/workflows/release-tag.yml)
+- pushes to `main` also create an automated annotated git tag and matching GitHub Release through [.github/workflows/release-tag.yml](.github/workflows/release-tag.yml)
 
 Release tags use this format:
 
