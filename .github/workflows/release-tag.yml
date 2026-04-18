@@ -1,4 +1,4 @@
-name: Create Release Tag
+name: Create Release Tag and GitHub Release
 
 on:
   push:
@@ -22,13 +22,17 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Create tag for current main commit
+        id: create_tag
         env:
           GITHUB_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
 
-          if git tag --points-at "$GITHUB_SHA" | grep -Eq '^release-'; then
-            echo "A release tag already points at $GITHUB_SHA"
+          existing_tag="$(git tag --points-at "$GITHUB_SHA" | grep -E '^release-' | head -n 1 || true)"
+
+          if [ -n "$existing_tag" ]; then
+            echo "A release tag already points at $GITHUB_SHA: $existing_tag"
+            echo "tag=$existing_tag" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -38,3 +42,29 @@ jobs:
 
           git tag -a "$tag" "$GITHUB_SHA" -m "Automated release tag for $GITHUB_SHA"
           git push origin "$tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub release
+        uses: actions/github-script@v7
+        env:
+          TAG_NAME: ${{ steps.create_tag.outputs.tag }}
+        with:
+          script: |
+            const tag = process.env.TAG_NAME;
+            const { owner, repo } = context.repo;
+
+            try {
+              await github.rest.repos.getReleaseByTag({ owner, repo, tag });
+              core.info(`Release already exists for ${tag}`);
+            } catch (error) {
+              if (error.status !== 404) throw error;
+
+              await github.rest.repos.createRelease({
+                owner,
+                repo,
+                tag_name: tag,
+                name: tag,
+                target_commitish: context.sha,
+                generate_release_notes: true,
+              });
+            }
