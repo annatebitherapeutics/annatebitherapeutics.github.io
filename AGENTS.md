@@ -8,6 +8,8 @@ This repository is a Jekyll site deployed with GitHub Pages. Agents working here
 - Prefer `mamba run -n website <command>` for non-interactive execution.
 - The expected Ruby version is defined in [.ruby-version](.ruby-version) and should match CI.
 - Use Node from the same environment for `npm` and Playwright commands.
+- The environment spec lives in [environment.yml](environment.yml).
+- Bootstrap the toolchain with [scripts/setup-website-env.sh](scripts/setup-website-env.sh).
 - When running from `/mnt/c` under WSL, avoid repo-local Bundler install paths because Bundler treats those directories as world-writable.
 - Prefer temp paths for local tooling state in that case:
   - `HOME=/tmp/website-home`
@@ -22,7 +24,7 @@ This repository is a Jekyll site deployed with GitHub Pages. Agents working here
 
 - Build the site: `bundle exec jekyll build`
 - Serve locally: `bundle exec jekyll serve --livereload`
-- Run the test flow: `npm test`
+- Run the repo-local test flow with [scripts/test-website.sh](scripts/test-website.sh).
 - Update snapshots only when intentionally refreshing expected output: `npm run test:update`
 - In the `website` conda environment, prefer `ruby -S bundle _2.4.1_ ...` if the packaged `bundle` shim is broken.
 
@@ -48,8 +50,8 @@ This repository is a Jekyll site deployed with GitHub Pages. Agents working here
 ## Validation Order
 
 - If dependencies changed, validate in this order:
-  - `bundle exec jekyll build`
-  - `npm test` if browser tests are relevant
+  - `./scripts/setup-website-env.sh` when the environment or dependencies changed
+  - `./scripts/test-website.sh`
 - If the full test suite cannot run, state the blocker clearly in the final handoff.
 
 ## Content and Deployment Safety

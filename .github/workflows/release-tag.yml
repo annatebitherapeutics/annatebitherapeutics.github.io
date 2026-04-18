@@ -1,0 +1,40 @@
+name: Create Release Tag
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+jobs:
+  tag-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Create tag for current main commit
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          if git tag --points-at "$GITHUB_SHA" | grep -Eq '^release-'; then
+            echo "A release tag already points at $GITHUB_SHA"
+            exit 0
+          fi
+
+          short_sha="${GITHUB_SHA::7}"
+          timestamp="$(date -u +'%Y%m%d-%H%M%S')"
+          tag="release-${timestamp}-${short_sha}"
+
+          git tag -a "$tag" "$GITHUB_SHA" -m "Automated release tag for $GITHUB_SHA"
+          git push origin "$tag"
