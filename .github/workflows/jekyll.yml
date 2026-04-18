@@ -10,6 +10,8 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -36,23 +38,32 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408 # v1.195.0
         with:
-          ruby-version: '3.1' # Not needed with a .ruby-version file
+          ruby-version: .ruby-version
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 1 # Increment this number if you need to re-download cached gems
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         id: pages
         uses: actions/configure-pages@v4
-      - name: Build with Jekyll
+      - name: Build with Jekyll for PR validation
+        if: github.event_name == 'pull_request'
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      - name: Build with Jekyll for Pages
+        if: github.event_name != 'pull_request'
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
 
   # Deployment job
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
