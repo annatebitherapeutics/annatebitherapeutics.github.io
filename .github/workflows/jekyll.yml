@@ -21,6 +21,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  pull-requests: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -35,27 +36,130 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408 # v1.195.0
         with:
           ruby-version: .ruby-version
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 1 # Increment this number if you need to re-download cached gems
+
+      - name: Setup Node
+        if: github.event_name == 'pull_request'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Detect changed newsroom post
+        if: github.event_name == 'pull_request'
+        id: changed_news_post
+        shell: bash
+        run: |
+          set -euo pipefail
+          post_path="$(git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}" | grep -E '^_posts/news/.*\.(md|markdown)$' | head -n1 || true)"
+          if [ -n "$post_path" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+            echo "post_path=$post_path" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Node dependencies
+        if: github.event_name == 'pull_request'
+        run: npm ci
+
+      - name: Run unit tests
+        if: github.event_name == 'pull_request'
+        run: npm run test:unit
+
+      - name: Install Playwright Chromium
+        if: github.event_name == 'pull_request' && steps.changed_news_post.outputs.found == 'true'
+        run: npx playwright install --with-deps chromium
+
       - name: Setup Pages
         if: github.event_name != 'pull_request'
         id: pages
         uses: actions/configure-pages@v4
+
       - name: Build with Jekyll for PR validation
         if: github.event_name == 'pull_request'
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+
+      - name: Generate PR website previews
+        if: github.event_name == 'pull_request' && steps.changed_news_post.outputs.found == 'true'
+        run: npm run pr:previews -- --post-source "${{ steps.changed_news_post.outputs.post_path }}"
+
+      - name: Upload PR website previews
+        if: github.event_name == 'pull_request' && steps.changed_news_post.outputs.found == 'true'
+        id: upload_previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-website-previews-${{ github.event.pull_request.number }}
+          path: pr-previews/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Comment PR with preview artifact
+        if: github.event_name == 'pull_request' && steps.changed_news_post.outputs.found == 'true'
+        uses: actions/github-script@v7
+        env:
+          ARTIFACT_URL: ${{ steps.upload_previews.outputs.artifact-url }}
+          MANIFEST_PATH: pr-previews/manifest.json
+        with:
+          script: |
+            const fs = require('node:fs');
+            const manifest = JSON.parse(fs.readFileSync(process.env.MANIFEST_PATH, 'utf8'));
+            const marker = '<!-- pr-website-previews -->';
+            const artifactUrl = process.env.ARTIFACT_URL;
+            const body = [
+              marker,
+              '## Website previews',
+              '',
+              `Generated visual previews for \`${manifest.postSourcePath}\`.`,
+              '',
+              artifactUrl ? `- Download artifact: [${artifactUrl}](${artifactUrl})` : '- Artifact uploaded in this workflow run.',
+              ...manifest.screenshots.map((shot) => `- ${shot.label}: \`${shot.screenshotPath}\``),
+              '',
+              '_Includes full-page screenshots for the front page, newsroom landing page, and the changed news post._',
+            ].join('\n');
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+            });
+            const existing = comments.find((comment) =>
+              comment.user?.type === 'Bot' && comment.body?.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              });
+            }
+
       - name: Build with Jekyll for Pages
         if: github.event_name != 'pull_request'
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+
       - name: Upload artifact
         if: github.event_name != 'pull_request'
         # Automatically uploads an artifact from the './_site' directory by default
