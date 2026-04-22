@@ -76,9 +76,30 @@ function getChangedNewsPostPaths(paths) {
   return paths.filter((filePath) => /^_posts\/news\/.*\.(md|markdown)$/i.test(filePath));
 }
 
+function parseNameStatusLine(line) {
+  const fields = line.split('\t').filter(Boolean);
+  if (fields.length < 2) {
+    return null;
+  }
+
+  return {
+    status: fields[0],
+    path: fields[fields.length - 1],
+  };
+}
+
+function getPreviewableNewsPostPaths(lines) {
+  return lines
+    .map(parseNameStatusLine)
+    .filter(Boolean)
+    .filter((entry) => /^(A|M|R\d*|C\d*)$/i.test(entry.status))
+    .map((entry) => entry.path)
+    .filter((filePath) => /^_posts\/news\/.*\.(md|markdown)$/i.test(filePath));
+}
+
 function getGitDiffPaths(repoRoot, baseRef) {
   const base = baseRef || 'origin/main...HEAD';
-  const result = spawnSync('git', ['diff', '--name-only', base], {
+  const result = spawnSync('git', ['diff', '--name-status', '--diff-filter=AMRC', base], {
     cwd: repoRoot,
     encoding: 'utf8',
   });
@@ -87,10 +108,12 @@ function getGitDiffPaths(repoRoot, baseRef) {
     throw new Error(`git diff failed: ${result.stderr || result.stdout}`.trim());
   }
 
-  return result.stdout
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean);
+  return getPreviewableNewsPostPaths(
+    result.stdout
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+  );
 }
 
 function findBuiltPostHtml(siteDir, title) {
@@ -108,6 +131,46 @@ function findBuiltPostHtml(siteDir, title) {
   }
 
   throw new Error(`Unable to find a built HTML page in ${siteDir} for post title "${title}"`);
+}
+
+function getPostSlug(postSourcePath) {
+  return path.basename(postSourcePath).replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.(md|markdown)$/i, '');
+}
+
+function normalizeRoutePath(routePath) {
+  const trimmed = `${routePath || '/'}`.trim();
+  if (!trimmed || trimmed === '/') {
+    return '/';
+  }
+
+  return `/${trimmed.replace(/^\/+|\/+$/g, '')}/`;
+}
+
+function getBuiltPostRoutePath(postSourcePath, frontMatter) {
+  if (frontMatter.permalink) {
+    return normalizeRoutePath(frontMatter.permalink);
+  }
+
+  const categories = Array.isArray(frontMatter.categories)
+    ? frontMatter.categories
+    : frontMatter.categories
+      ? [frontMatter.categories]
+      : [];
+  return normalizeRoutePath([...categories, getPostSlug(postSourcePath)].join('/'));
+}
+
+function resolveBuiltPostHtmlPath(siteDir, postSourcePath, frontMatter) {
+  const routePath = getBuiltPostRoutePath(postSourcePath, frontMatter);
+  const htmlPath = routePath === '/'
+    ? path.join(siteDir, 'index.html')
+    : path.join(siteDir, routePath.slice(1), 'index.html');
+
+  ensureFile(htmlPath, `Built post export for ${path.basename(postSourcePath)}`);
+
+  return {
+    htmlPath,
+    routePath,
+  };
 }
 
 function toRoutePath(siteDir, htmlPath) {
@@ -134,7 +197,7 @@ function buildPreviewPlan({ repoRoot, postSourcePath, outputDir }) {
     throw new Error(`Missing title in ${postSourcePath}`);
   }
 
-  const postHtmlPath = findBuiltPostHtml(siteDir, frontMatter.title);
+  const builtPost = resolveBuiltPostHtmlPath(siteDir, postSourcePath, frontMatter);
   const screenshotDir = outputDir || path.join(repoRoot, 'pr-previews');
 
   return {
@@ -161,8 +224,8 @@ function buildPreviewPlan({ repoRoot, postSourcePath, outputDir }) {
       {
         name: 'post-page',
         label: frontMatter.title,
-        htmlPath: postHtmlPath,
-        routePath: toRoutePath(siteDir, postHtmlPath),
+        htmlPath: builtPost.htmlPath,
+        routePath: builtPost.routePath,
         screenshotPath: path.join(screenshotDir, 'post-page.png'),
       },
     ],
@@ -354,5 +417,6 @@ module.exports = {
   buildPreviewPlan,
   findBuiltPostHtml,
   getChangedNewsPostPaths,
+  getPreviewableNewsPostPaths,
   readFrontMatter,
 };

@@ -57,10 +57,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          post_path="$(git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}" | grep -E '^_posts/news/.*\.(md|markdown)$' | head -n1 || true)"
-          if [ -n "$post_path" ]; then
+          mapfile -t post_paths < <(
+            git diff --name-status --diff-filter=AMRC "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}" \
+              | awk 'NF {print $NF}' \
+              | grep -E '^_posts/news/.*\.(md|markdown)$' || true
+          )
+
+          echo "count=${#post_paths[@]}" >> "$GITHUB_OUTPUT"
+
+          if [ "${#post_paths[@]}" -eq 1 ]; then
             echo "found=true" >> "$GITHUB_OUTPUT"
-            echo "post_path=$post_path" >> "$GITHUB_OUTPUT"
+            echo "post_path=${post_paths[0]}" >> "$GITHUB_OUTPUT"
           else
             echo "found=false" >> "$GITHUB_OUTPUT"
           fi
