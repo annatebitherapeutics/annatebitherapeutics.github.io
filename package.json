@@ -9,10 +9,12 @@
   "scripts": {
     "build": "bundle exec jekyll build",
     "serve": "bundle exec jekyll serve --livereload",
-    "test": "npm run build && npx playwright test",
+    "test": "npm run test:unit && npm run build && npx playwright test",
+    "test:unit": "node --test scripts/__tests__/*.test.js",
     "test:update": "npm run build && npx playwright test --update-snapshots",
     "snapshots": "npm run build && node scripts/snapshot-site.js",
     "snapshots:only": "node scripts/snapshot-site.js",
+    "pr:previews": "node scripts/capture-pr-previews.js",
     "playwright:install": "npx playwright install"
   },
   "repository": {

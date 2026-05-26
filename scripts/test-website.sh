@@ -26,6 +26,7 @@ export PLAYWRIGHT_BROWSERS_PATH=/tmp/website-playwright
 
 mkdir -p "$HOME" "$BUNDLE_PATH" "$PLAYWRIGHT_BROWSERS_PATH"
 
+npm run test:unit
 ruby -S bundle _2.4.1_ exec jekyll build
 npx playwright test
 '
