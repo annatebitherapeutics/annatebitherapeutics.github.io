@@ -14,6 +14,10 @@ tags:
   - startup innovation
   - Eric DeJesus
 header: no
+image:
+  title: 2026-gipa-startup-awards.jpg
+  caption: "Participants gather at the 2026 GIPA Startup Awards event."
+  caption_url: https://www.linkedin.com/posts/eric-dejesus-phd-77b710225_thrilled-to-share-that-annate-bitherapeutics-activity-7463415349246402560--iCO
 teaser: "Annate Bitherapeutics won at the 2026 GIPA Startup Awards, recognizing Georgia startups that use intellectual property as a strategic business asset."
 ---
 
