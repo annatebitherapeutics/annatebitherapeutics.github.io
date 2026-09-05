@@ -23,11 +23,7 @@ The awards ceremony was held on **May 20, 2026**, in Atlanta. GIPA describes the
 
 In a LinkedIn post following the event, Annate CEO **Eric DeJesus, PhD**, thanked the Georgia Intellectual Property Alliance for recognizing startups using intellectual property to build meaningful, high-impact companies and noted Annate’s continued work advancing its ApoL1-based bispecific antibody platform for multiple myeloma therapy.
 
-A LinkedIn post from attendee **Kiba Polk** also highlighted Annate’s recognition, describing Annate as the pitch competition winner and noting the **$5,000 prize award**.
-
 Read more:
 [Eric DeJesus, PhD, on LinkedIn](https://www.linkedin.com/posts/eric-dejesus-phd-77b710225_thrilled-to-share-that-annate-bitherapeutics-activity-7463415349246402560--iCO)
 
 [2026 GIPA Startup Awards event page](https://www.gaipalliance.org/gipa-calendar/2026/5/20/2026-gipa-startup-awards)
-
-[Kiba Polk on LinkedIn](https://www.linkedin.com/posts/kibapolk_gipa-startup-innovation-activity-7463189243088187393--Q73)
